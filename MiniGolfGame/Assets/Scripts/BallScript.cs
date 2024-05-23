@@ -9,7 +9,7 @@ public class BallScript : MonoBehaviour
     public Vector3 firstMousePos;
     public Vector3 lastMousePos;
     public float vectorBound = 50;
-    public float strength = 5;
+    public float shootForce = 5;
     public Vector3 ballDirection;
     public ConstantForce gravity;
 
@@ -29,6 +29,15 @@ public class BallScript : MonoBehaviour
 
     void Update()
     {
+
+        Vector3? worldPoint = CastMouseClickRay();
+
+        if (!worldPoint.HasValue)
+        {
+            return;
+        }
+
+
         /*When mouse button CLICKED*/
         if (Input.GetButtonDown("Fire1"))
         {
@@ -46,18 +55,15 @@ public class BallScript : MonoBehaviour
             //If mouse was earlier clicked on the ball
             if (ballWasClicked)
             {
-                lastMousePos = Input.mousePosition;
 
-				
-				ballDirection = new Vector3(firstMousePos.x - lastMousePos.x, 0, firstMousePos.y - lastMousePos.y);
-                bindVector(ref ballDirection, vectorBound);
-                myRigidBody.velocity = ballDirection.normalized * strength;
+				Vector3 horizontalWorldPoint = new Vector3(worldPoint.Value.x, transform.position.y, worldPoint.Value.z);
 
-                //
-                myRigidBody.AddForce(ballDirection.normalized * strength);
+                Vector3 direction = -(horizontalWorldPoint - transform.position).normalized;
+
+                float strength = Vector3.Distance(transform.position, horizontalWorldPoint);
+                myRigidBody.AddForce(direction.normalized * strength * shootForce);
 
 
-                //
                 ballWasClicked = false;
             }
 
@@ -73,33 +79,26 @@ public class BallScript : MonoBehaviour
         ballHover = false;
     }
 
-    private void bindVector(ref Vector3 vec, float vectorBound)
-    {
-        if (vec.x > vectorBound)
-        {
-            vec.z = vectorBound * vec.z / vec.x;
-            vec.x = vectorBound;
-        }
-        if (vec.x < -vectorBound)
-        {
-            vec.z = -vectorBound * vec.z / vec.x;
-            vec.x = -vectorBound;
-        }
-        if (vec.y > vectorBound)
-        {
-            vec.x = vectorBound * vec.x / vec.z;
-            vec.z = vectorBound;
-        }
-        if (vec.y < -vectorBound)
-        {
-            vec.x = -vectorBound * vec.x / vec.z;
-            vec.z = -vectorBound;
-        }
-    }
-
     public bool getBallHover()
     {
         return ballHover;
+    }
+
+    private Vector3? CastMouseClickRay()
+    {
+        Vector3 screenMousePosNear = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane);
+        Vector3 screenMousePosFar = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.farClipPlane);
+        Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
+        Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
+        RaycastHit hit;
+        if (Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, float.PositiveInfinity))
+        {
+            return hit.point;
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }

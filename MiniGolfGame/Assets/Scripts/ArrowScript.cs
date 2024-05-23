@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -38,6 +40,7 @@ public class ArrowScript : MonoBehaviour
         {
             lastMousePos = Input.mousePosition;
             arrowVector = new Vector2(firstMousePos.x - lastMousePos.x, firstMousePos.y - lastMousePos.y);
+            arrowVector = new Vector2(firstMousePos.x - lastMousePos.x, firstMousePos.y - lastMousePos.y);
 
             //Setting position and rotation of the arrow depending on arrow vector
             setArrowPosAndRot(arrowVector);
@@ -57,7 +60,7 @@ public class ArrowScript : MonoBehaviour
     private void setArrowPosAndRot(Vector2 vec)
     {
 		//Scaling the arrow
-		transform.localScale = new Vector3(0.1f, boundHypotenuse(arrowVector, maxArrowLength) / num, 0.1f);
+		transform.localScale = new Vector3(0.1f, boundHypotenuse(vec, maxArrowLength) / num, 0.1f);
 
 		//Find the appropriate angle and rotate the arrow
 		float vectorAngle = getVectorAngle(vec);
@@ -98,8 +101,8 @@ public class ArrowScript : MonoBehaviour
         }
 
         //Adding 180 degrees cuz at the moment it was in the direction of the vector, and combining it with subtraction from 360,
-        //cuz it was going from 0 to 360 clockwise instead of counterclockwise
-        return 180 - angleDeg;
+        //cuz it was going from 0 to 360 clockwise instead of counterclockwise + adding it to camera y rotation to follow camera movement
+        return Camera.main.transform.localEulerAngles.y + 180 - angleDeg;
     }
 
 
@@ -121,5 +124,7 @@ public class ArrowScript : MonoBehaviour
 
         return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2));
     }
+
+
 
 }
