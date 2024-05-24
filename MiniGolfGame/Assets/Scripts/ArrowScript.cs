@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -7,6 +8,8 @@ using UnityEngine.UIElements;
 
 public class ArrowScript : MonoBehaviour
 {
+    //public CinemachineFreeLook freeLookCamera;
+    public Camera cam;
     //public BallScript ballScript;
     public Vector3 firstMousePos;
     public Vector3 lastMousePos;
@@ -102,7 +105,8 @@ public class ArrowScript : MonoBehaviour
 
         //Adding 180 degrees cuz at the moment it was in the direction of the vector, and combining it with subtraction from 360,
         //cuz it was going from 0 to 360 clockwise instead of counterclockwise + adding it to camera y rotation to follow camera movement
-        return Camera.main.transform.localEulerAngles.y + 180 - angleDeg;
+        //return Camera.main.transform.localEulerAngles.y + 180 - angleDeg;
+        return cam.transform.localEulerAngles.y + 180 - angleDeg;
     }
 
 
