@@ -14,7 +14,6 @@ public class LevelScript : MonoBehaviour
     private float currentVertical;
     private float horizontalVelocity;
     private float verticalVelocity;
-    private bool isRightMouseHeld = false;
 
     void Start()
     {
@@ -25,8 +24,6 @@ public class LevelScript : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            isRightMouseHeld = true;
-
             float targetHorizontal = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * 100f;
             float targetVertical = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -35,8 +32,6 @@ public class LevelScript : MonoBehaviour
         }
         else
         {
-            isRightMouseHeld = false;
-
             currentHorizontal *= decelerationFactor;
             currentVertical *= decelerationFactor;
 

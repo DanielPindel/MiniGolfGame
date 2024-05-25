@@ -5,9 +5,11 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public float forceMultiplier = 1f;
-    public float maxForce = 5f; 
+    public float maxForce = 5f;
     public float maxDragDistance = 1f;
-    public float minVelocity = 0.02f;
+    public float minVelocity = 0;
+
+    public GameObject holeUI;
 
     private Vector3 dragStartPos;
     private Rigidbody rb;
@@ -20,16 +22,23 @@ public class BallController : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
+        holeUI.SetActive(false);
     }
 
     void Update()
     {
+        //Stops any further code if the ball is in freeze state
+        if (rb.constraints.Equals(RigidbodyConstraints.FreezeAll))
+        {
+            return;
+        }
+
         if (rb.velocity.magnitude <= minVelocity)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
-        if (rb.velocity.magnitude <= minVelocity / 2) 
+        if (rb.velocity.magnitude <= minVelocity / 2)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -79,7 +88,31 @@ public class BallController : MonoBehaviour
         Vector3 normal = collision.contacts[0].normal;
         Vector3 vel = rb.velocity;
         rb.velocity = Vector3.Reflect(vel, normal);
-        //rb.AddForce(Vector3.Reflect(vel, normal), ForceMode.Impulse);
         Debug.Log("angle: " + Vector3.Angle(vel, Vector3.Reflect(vel, normal)));
     }
+
+    //Called when ball enters the hole
+    void OnTriggerEnter()
+    {
+        holeUI.SetActive(true);
+    }
+
+
+    //A function to be called by the PLAY AGAIN button
+    public void callRestartBall()
+    {
+        holeUI.SetActive(false);
+        StartCoroutine(restartBall());
+    }
+
+    //Freezing the ball for 1 second after it gets restarted and moved to its starting position
+    IEnumerator restartBall()
+    {
+        transform.position = new Vector3(1, 0.5f, 1);
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        yield return new WaitForSeconds(1);
+        rb.constraints = RigidbodyConstraints.None;
+    }
+
+
 }
