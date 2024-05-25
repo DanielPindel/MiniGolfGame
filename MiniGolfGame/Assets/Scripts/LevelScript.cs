@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class LevelScript : MonoBehaviour
 {
+
     public CinemachineFreeLook freeLookCamera;
     public float mouseSensitivity = 5f;
     public float smoothingFactor = 2f;
@@ -46,5 +47,8 @@ public class LevelScript : MonoBehaviour
         }
         freeLookCamera.m_XAxis.Value += currentHorizontal;
         freeLookCamera.m_YAxis.Value -= currentVertical;
+
+
+
     }
 }

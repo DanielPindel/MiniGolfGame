@@ -8,13 +8,12 @@ public class BallController : MonoBehaviour
     public float maxForce = 5f;
     public float maxDragDistance = 1f;
     public float minVelocity = 0;
-
-    public GameObject holeUI;
+    public LogicScript logicScript;
 
     private Vector3 dragStartPos;
     private Rigidbody rb;
     private LineRenderer lineRenderer;
-
+    private Vector3 ballStartingPos;
 
     void Start()
     {
@@ -22,7 +21,7 @@ public class BallController : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
-        holeUI.SetActive(false);
+        ballStartingPos = transform.position;
     }
 
     void Update()
@@ -70,6 +69,8 @@ public class BallController : MonoBehaviour
 
 
                 lineRenderer.enabled = false;
+
+                logicScript.addStrokeToCurrentLevel();
             }
         }
     }
@@ -88,27 +89,27 @@ public class BallController : MonoBehaviour
         Vector3 normal = collision.contacts[0].normal;
         Vector3 vel = rb.velocity;
         rb.velocity = Vector3.Reflect(vel, normal);
-        Debug.Log("angle: " + Vector3.Angle(vel, Vector3.Reflect(vel, normal)));
     }
 
     //Called when ball enters the hole
     void OnTriggerEnter()
     {
-        holeUI.SetActive(true);
+        logicScript.setHoleUIActive(true);
     }
 
 
     //A function to be called by the PLAY AGAIN button
     public void callRestartBall()
     {
-        holeUI.SetActive(false);
+        logicScript.setHoleUIActive(false);
+        logicScript.resetStrokes();
         StartCoroutine(restartBall());
     }
 
     //Freezing the ball for 1 second after it gets restarted and moved to its starting position
     IEnumerator restartBall()
     {
-        transform.position = new Vector3(1, 0.5f, 1);
+        transform.position = ballStartingPos;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(1);
         rb.constraints = RigidbodyConstraints.None;
