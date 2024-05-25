@@ -7,7 +7,7 @@ public class BallController : MonoBehaviour
     public float forceMultiplier = 1f;
     public float maxForce = 5f; 
     public float maxDragDistance = 1f;
-    public float minVelocity = 0.1f;
+    public float minVelocity = 0.02f;
 
     private Vector3 dragStartPos;
     private Rigidbody rb;
@@ -58,6 +58,8 @@ public class BallController : MonoBehaviour
                 force = Vector3.ClampMagnitude(force, maxForce);
                 rb.AddForce(force, ForceMode.Impulse);
 
+
+
                 lineRenderer.enabled = false;
             }
         }
@@ -70,5 +72,14 @@ public class BallController : MonoBehaviour
         float distance;
         xzPlane.Raycast(ray, out distance);
         return ray.GetPoint(distance);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Vector3 normal = collision.contacts[0].normal;
+        Vector3 vel = rb.velocity;
+        rb.velocity = Vector3.Reflect(vel, normal);
+        //rb.AddForce(Vector3.Reflect(vel, normal), ForceMode.Impulse);
+        Debug.Log("angle: " + Vector3.Angle(vel, Vector3.Reflect(vel, normal)));
     }
 }
