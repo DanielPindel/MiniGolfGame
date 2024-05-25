@@ -8,4 +8,38 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MainMenu_1.unity
+    guid: 182b770d188388744a33d6f05f75b03d
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 942aaed7882925e4b9158297533f515d
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: aa7c6c1fb5b12d84f982f9be8731df66
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 1609d23cfcb560e4cbf0019753e2dcb2
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 21440078330bd634d9a89d79c6c0e5bd
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: fd8ae241faaaeda49b090cc7dd2ac7a9
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: fc4f329b5f0d5314c91ec8185450f917
+  - enabled: 1
+    path: Assets/Scenes/Level7.unity
+    guid: d76d9f56492d7af409b7a5d7e09c92af
+  - enabled: 1
+    path: Assets/Scenes/Level8.unity
+    guid: 762c14ce6949abc4ca11bd9ca02b5129
+  - enabled: 1
+    path: Assets/Scenes/Level9.unity
+    guid: 68a2141b31f195f4a90edf84af9a82a6
+  - enabled: 1
+    path: Assets/Scenes/Level10.unity
+    guid: 37bf735c91d399c4599453023127b762
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
