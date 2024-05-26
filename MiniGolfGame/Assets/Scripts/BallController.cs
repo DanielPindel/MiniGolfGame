@@ -8,7 +8,6 @@ public class BallController : MonoBehaviour
     public float maxForce = 5f;
     public float maxDragDistance = 1f;
     public float minVelocity = 0;
-    public LogicScript logicScript;
 
     private Vector3 dragStartPos;
     private Rigidbody rb;
@@ -70,7 +69,7 @@ public class BallController : MonoBehaviour
 
                 lineRenderer.enabled = false;
 
-                logicScript.addStrokeToCurrentLevel();
+                GameManager.Instance.addStrokeToCurrentLevel();
             }
         }
     }
@@ -92,17 +91,20 @@ public class BallController : MonoBehaviour
     }
 
     //Called when ball enters the hole
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        logicScript.setHoleUIActive(true);
+        if(other.CompareTag("Hole"))
+        {
+            GameManager.Instance.setHoleUIActive(true);
+        }
     }
 
 
     //A function to be called by the PLAY AGAIN button
     public void callRestartBall()
     {
-        logicScript.setHoleUIActive(false);
-        logicScript.resetStrokes();
+        GameManager.Instance.setHoleUIActive(false);
+        GameManager.Instance.resetStrokes();
         StartCoroutine(restartBall());
     }
 
@@ -114,6 +116,4 @@ public class BallController : MonoBehaviour
         yield return new WaitForSeconds(1);
         rb.constraints = RigidbodyConstraints.None;
     }
-
-
 }

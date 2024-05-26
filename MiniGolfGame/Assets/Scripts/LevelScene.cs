@@ -1,10 +1,14 @@
+using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using Cinemachine;
+using UnityEngine.SceneManagement;
 
-public class LevelScript : MonoBehaviour
+public class LevelScene : MonoBehaviour
 {
+    GameObject scene;
 
     public CinemachineFreeLook freeLookCamera;
     public float mouseSensitivity = 5f;
@@ -16,12 +20,41 @@ public class LevelScript : MonoBehaviour
     private float horizontalVelocity;
     private float verticalVelocity;
 
+    public enum LevelStates
+    {
+        Default,
+        Finish,
+        NextScene
+    }
+    public LevelStates levelState = LevelStates.Default;
+
+    void Awake()
+    {
+        scene = GameObject.FindGameObjectWithTag("Scene");
+    }
+
     void Start()
     {
         freeLookCamera.m_XAxis.m_InputAxisName = "";
         freeLookCamera.m_YAxis.m_InputAxisName = "";
     }
+
     void Update()
+    {
+        switch(levelState)
+        {
+            case LevelStates.Default:
+                CameraMovement();
+                break;
+            case LevelStates.Finish:
+                levelState = LevelStates.NextScene;
+                break;
+            case LevelStates.NextScene:
+                break;
+        }
+    }
+
+    void CameraMovement()
     {
         if (Input.GetMouseButton(1))
         {
@@ -36,19 +69,21 @@ public class LevelScript : MonoBehaviour
             currentHorizontal *= decelerationFactor;
             currentVertical *= decelerationFactor;
 
-            if(Mathf.Abs(currentHorizontal) < 0.01f)
+            if (Mathf.Abs(currentHorizontal) < 0.01f)
             {
                 currentHorizontal = 0f;
             }
-            if(Mathf.Abs(currentVertical) < 0.01f)
+            if (Mathf.Abs(currentVertical) < 0.01f)
             {
                 currentVertical = 0f;
             }
         }
         freeLookCamera.m_XAxis.Value += currentHorizontal;
         freeLookCamera.m_YAxis.Value -= currentVertical;
+    }
 
-
-
+    public void NextLevel()
+    {
+        GameManager.Instance.NextLevel();
     }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Track
   - BallCamera
+  - Scene
+  - Hole
   layers:
   - Default
   - TransparentFX
