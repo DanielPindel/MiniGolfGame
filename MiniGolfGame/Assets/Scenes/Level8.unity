@@ -249,7 +249,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a8fe2d6949c14f64c8afe1f3b9b4f722, type: 2}
+      objectReference: {fileID: 2100000, guid: c55b03700f0905145a4bdf4a1cd97248, type: 2}
     - target: {fileID: 919132149155446097, guid: 8c7e5b07893805f4584bd1a168665104,
         type: 3}
       propertyPath: m_Name
@@ -690,8 +690,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 983681689066829807, guid: 3efc5390895e9b5418e56c72dac349dd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 229303702}
   m_SourcePrefab: {fileID: 100100000, guid: 3efc5390895e9b5418e56c72dac349dd, type: 3}
+--- !u!1 &229303701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 983681689066829807, guid: 3efc5390895e9b5418e56c72dac349dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 229303700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &229303702
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229303701}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e82174fbd7cb9df4aa96098cb5b0f3ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &231259000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1517,7 +1549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788787638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2139005, y: 0.68088436, z: -0.21888416, w: 0.6653817}
+  m_LocalRotation: {x: 0.21390052, y: 0.6808843, z: -0.21888414, w: 0.6653818}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1964,7 +1996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935499441}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23792931, y: 0.67248404, z: -0.24347278, w: 0.6571726}
+  m_LocalRotation: {x: 0.23792933, y: 0.67248404, z: -0.24347277, w: 0.6571727}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2064,7 +2096,7 @@ MonoBehaviour:
     m_MaxSpeed: 2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
+    m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 0
     m_MinValue: 0
@@ -2088,7 +2120,7 @@ MonoBehaviour:
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
+    m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -180

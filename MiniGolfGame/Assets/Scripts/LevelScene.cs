@@ -82,6 +82,8 @@ public class LevelScene : MonoBehaviour
         freeLookCamera.m_YAxis.Value -= currentVertical;
     }
 
+
+
     public void NextLevel()
     {
         GameManager.Instance.LoadNextLevel();

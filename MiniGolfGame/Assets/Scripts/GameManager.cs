@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public GameObject holeUI;
     public TextMeshProUGUI strokesText;
     public TextMeshProUGUI holeUITitle;
+    public ParticleSystem confettiParticles;
+
+    public static bool gameIsPaused = false;
 
     bool startNextScene;
     //string nextSceneName;
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public GameStates state = GameStates.MainMenu;
 
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
@@ -67,10 +70,10 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
-    
+
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        switch(state)
+        switch (state)
         {
             case GameStates.MainMenu:
                 StartMainMenu();
@@ -92,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        switch(state)
+        switch (state)
         {
             case GameStates.MainMenu:
                 //MainMenuLoop();
@@ -125,7 +128,7 @@ public class GameManager : MonoBehaviour
         nextSceneName = SceneNameToString(scene);
     }*/
 
-    
+
     public string SceneNameToString(GameStates scene)
     {
         return scene.ToString();
@@ -135,14 +138,14 @@ public class GameManager : MonoBehaviour
         return (GameStates)Enum.Parse(typeof(GameStates), scene);
     }
 
-    
+
     private void StartMainMenu()
     {
 
     }
 
 
-    
+
     /*private void MainMenuLoop()
     {
         if(startNextScene)
@@ -153,7 +156,7 @@ public class GameManager : MonoBehaviour
         }
     }*/
 
-    
+
     private void LevelLoop()
     {
         if (startNextScene)
@@ -163,7 +166,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
     private void StartLevel()
     {
         //ball = GameObject.FindGameObjectWithTag("Player");
@@ -177,7 +180,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
+
     public void LoadNextLevel()
     {
         state = SceneNameToEnum(nextLevel);
@@ -201,13 +204,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool isHoleUIActive() { return holeUI.activeSelf; }
+
     public int GetCurrentLevelNumber()
     {
         string levelName = SceneNameToString(state);
         try
         {
             int levelNumber = Int32.Parse(levelName.Substring(levelName.Length - 1));
-            if(levelNumber == 0)
+            if (levelNumber == 0)
             {
                 levelNumber = 10;
             }
@@ -239,5 +244,20 @@ public class GameManager : MonoBehaviour
         string levelName = "Level" + levelId;
         state = SceneNameToEnum(levelName);
         SceneManager.LoadScene(levelName);
+    }
+
+    public bool isGamePaused()
+    {
+        return gameIsPaused;
+    }
+
+    public void setGamePause(bool pauseGame)
+    {
+        gameIsPaused = pauseGame;
+    }
+
+    public void playConfettiParticles()
+    {
+        confettiParticles.Play();
     }
 }

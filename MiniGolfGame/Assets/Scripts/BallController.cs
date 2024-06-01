@@ -9,11 +9,14 @@ public class BallController : MonoBehaviour
     public float maxDragDistance = 1f;
     public float minVelocity = 0.1f;
 
+    public ParticleSystem confettiParticles;
+
     private Vector3 dragStartPos;
     private Rigidbody rb;
     private LineRenderer lineRenderer;
     private Vector3 ballStartingPos;
     private bool isInputActive;
+
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class BallController : MonoBehaviour
     void Update()
     {
         //Stops any further code if the ball is in the hole or restarting its position
-        if (!isInputActive)
+        if (!isInputActive || GameManager.Instance.isGamePaused())
         {
             return;
         }
@@ -103,6 +106,7 @@ public class BallController : MonoBehaviour
         {
             GameManager.Instance.setHoleUIActive(true);
             isInputActive = false;
+            confettiParticles.Play();
         }
     }
 
