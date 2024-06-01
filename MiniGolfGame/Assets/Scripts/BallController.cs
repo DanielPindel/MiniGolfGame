@@ -7,12 +7,13 @@ public class BallController : MonoBehaviour
     public float forceMultiplier = 1f;
     public float maxForce = 5f;
     public float maxDragDistance = 1f;
-    public float minVelocity = 0;
+    public float minVelocity = 0.1f;
 
     private Vector3 dragStartPos;
     private Rigidbody rb;
     private LineRenderer lineRenderer;
     private Vector3 ballStartingPos;
+    private bool isInputActive;
 
     void Start()
     {
@@ -21,12 +22,13 @@ public class BallController : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
         ballStartingPos = transform.position;
+        isInputActive = true;
     }
 
     void Update()
     {
-        //Stops any further code if the ball is in freeze state
-        if (rb.constraints.Equals(RigidbodyConstraints.FreezeAll))
+        //Stops any further code if the ball is in the hole or restarting its position
+        if (!isInputActive)
         {
             return;
         }
@@ -36,7 +38,7 @@ public class BallController : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
-        if (rb.velocity.magnitude <= minVelocity / 2)
+        if (rb.velocity.magnitude == 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -96,6 +98,7 @@ public class BallController : MonoBehaviour
         if(other.CompareTag("Hole"))
         {
             GameManager.Instance.setHoleUIActive(true);
+            isInputActive = false;
         }
     }
 
@@ -115,5 +118,6 @@ public class BallController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(1);
         rb.constraints = RigidbodyConstraints.None;
+        isInputActive = true;
     }
 }

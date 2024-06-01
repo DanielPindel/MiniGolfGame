@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Switch;
 using UnityEngine.SceneManagement;
 
@@ -11,24 +12,23 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
-    GameObject ball;
+    //GameObject ball;
     public int[] playerStrokesArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public GameObject holeUI;
     public TextMeshProUGUI strokesText;
     public TextMeshProUGUI holeUITitle;
 
     bool startNextScene;
-    string nextSceneName;
-    string lastSceneName;
+    //string nextSceneName;
+    //string lastSceneName;
 
-    string levelName;
+    //string levelName;
     public int levelNumber;
     string nextLevel;
 
     public enum GameStates
     {
         MainMenu,
-        LevelSelect,
         Level1,
         Level2,
         Level3,
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     }
     public GameStates state = GameStates.MainMenu;
 
+    // Manages the only one instance of the GameManager
     private void Awake()
     {
         if (Instance == null)
@@ -55,25 +56,25 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // Called automatically when loading a scene
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
+    // Called automatically when the game is terminated
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
+    // Called when scene gets loaded (from OnEnable)
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         switch(state)
         {
             case GameStates.MainMenu:
                 StartMainMenu();
-                break;
-            case GameStates.LevelSelect:
-                StartLevelSelect();
                 break;
             case GameStates.Level1:
             case GameStates.Level2:
@@ -95,10 +96,7 @@ public class GameManager : MonoBehaviour
         switch(state)
         {
             case GameStates.MainMenu:
-                MainMenuLoop();
-                break;
-            case GameStates.LevelSelect:
-                LevelSelectLoop();
+                //MainMenuLoop();
                 break;
             case GameStates.Level1:
             case GameStates.Level2:
@@ -115,16 +113,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartNextScene()
+    /*public void StartNextScene()
     {
         startNextScene = true;
         nextSceneName = lastSceneName;
-    }
-    public void StartNextScene(GameStates scene)
+    }*/
+
+    //Starts the specified scene
+    /*public void StartScene(GameStates scene)
     {
         startNextScene = true;
         nextSceneName = SceneNameToString(scene);
-    }
+    }*/
+
+    //Type conversion functions
     public string SceneNameToString(GameStates scene)
     {
         return scene.ToString();
@@ -133,11 +135,16 @@ public class GameManager : MonoBehaviour
     {
         return (GameStates)Enum.Parse(typeof(GameStates), scene);
     }
+
+    // ?? Why are these empty...?
     private void StartMainMenu()
     {
 
     }
-    private void MainMenuLoop()
+
+
+    
+    /*private void MainMenuLoop()
     {
         if(startNextScene)
         {
@@ -145,18 +152,22 @@ public class GameManager : MonoBehaviour
             state = GameStates.LevelSelect;
             SceneManager.LoadScene("LevelSelect");
         }
-    }
-    private void StartLevelSelect()
-    {
+    }*/
 
-    }
-    private void LevelSelectLoop()
+    //
+    private void LevelLoop()
     {
-
+        if (startNextScene)
+        {
+            startNextScene = false;
+            LoadNextLevel();
+        }
     }
+
+    //Sets all necessary variables at the start of the level
     private void StartLevel()
     {
-        ball = GameObject.FindGameObjectWithTag("Player");
+        //ball = GameObject.FindGameObjectWithTag("Player");
         holeUI = GameObject.Find("HoleUI");
         strokesText = GameObject.Find("StrokesText").GetComponent<TextMeshProUGUI>();
         levelNumber = GetCurrentLevelNumber();
@@ -165,34 +176,42 @@ public class GameManager : MonoBehaviour
         holeUI.SetActive(false);
         strokesText.enabled = true;
     }
-    private void LevelLoop()
-    {
-        if(startNextScene)
-        {
-            startNextScene = false;
-            NextLevel();
-        }
-    }
-    public void NextLevel()
+
+
+    //Loads next level
+    public void LoadNextLevel()
     {
         state = SceneNameToEnum(nextLevel);
         SceneManager.LoadScene(SceneNameToString(state));
     }
-    public void setHoleUIActive(bool active)
+    public void MainMenu()
     {
-        holeUI.SetActive(active);
-        if (active)
+        state = GameStates.MainMenu;
+        SceneManager.LoadScene(SceneNameToString(state));
+    }
+
+
+
+    public void setHoleUIActive(bool isActive)
+    {
+        holeUI.SetActive(isActive);
+        if (isActive)
         {
             //holeUITitle.SetText("HOLE IN " + strokesText.text + "!");
             strokesText.enabled = false;
         }
     }
+
     public int GetCurrentLevelNumber()
     {
         string levelName = SceneNameToString(state);
         try
         {
             int levelNumber = Int32.Parse(levelName.Substring(levelName.Length - 1));
+            if(levelNumber == 0)
+            {
+                levelNumber = 10;
+            }
             return levelNumber;
         }
         catch (FormatException)
@@ -205,20 +224,17 @@ public class GameManager : MonoBehaviour
     }
     public void addStrokeToCurrentLevel()
     {
-        int levelNumber = GetCurrentLevelNumber();
-
         playerStrokesArray[(int)levelNumber - 1]++;
         strokesText.SetText(playerStrokesArray[(int)levelNumber - 1].ToString());
 
     }
     public void resetStrokes()
     {
-        int levelNumber = GetCurrentLevelNumber();
-
         playerStrokesArray[(int)levelNumber - 1] = 0;
         strokesText.SetText("0");
 
     }
+
     public void OpenLevel(int levelId)
     {
         string levelName = "Level" + levelId;

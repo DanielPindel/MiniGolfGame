@@ -84,6 +84,11 @@ public class LevelScene : MonoBehaviour
 
     public void NextLevel()
     {
-        GameManager.Instance.NextLevel();
+        GameManager.Instance.LoadNextLevel();
+    }
+
+    public void MainMenu()
+    {
+        GameManager.Instance.MainMenu();
     }
 }
