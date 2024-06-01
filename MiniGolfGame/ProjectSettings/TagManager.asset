@@ -8,6 +8,8 @@ TagManager:
   - BallCamera
   - Scene
   - Hole
+  - Wall
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     //string lastSceneName;
 
     //string levelName;
-    public int levelNumber;
+    public int levelNumber = 1;
     string nextLevel;
 
     public enum GameStates
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     }
     public GameStates state = GameStates.MainMenu;
 
-    // Manages the only one instance of the GameManager
+    
     private void Awake()
     {
         if (Instance == null)
@@ -56,19 +56,18 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Called automatically when loading a scene
+    
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
-    // Called automatically when the game is terminated
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
-    // Called when scene gets loaded (from OnEnable)
+    
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         switch(state)
@@ -126,7 +125,7 @@ public class GameManager : MonoBehaviour
         nextSceneName = SceneNameToString(scene);
     }*/
 
-    //Type conversion functions
+    
     public string SceneNameToString(GameStates scene)
     {
         return scene.ToString();
@@ -136,7 +135,7 @@ public class GameManager : MonoBehaviour
         return (GameStates)Enum.Parse(typeof(GameStates), scene);
     }
 
-    // ?? Why are these empty...?
+    
     private void StartMainMenu()
     {
 
@@ -154,7 +153,7 @@ public class GameManager : MonoBehaviour
         }
     }*/
 
-    //
+    
     private void LevelLoop()
     {
         if (startNextScene)
@@ -164,7 +163,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Sets all necessary variables at the start of the level
+    
     private void StartLevel()
     {
         //ball = GameObject.FindGameObjectWithTag("Player");
@@ -178,7 +177,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //Loads next level
+    
     public void LoadNextLevel()
     {
         state = SceneNameToEnum(nextLevel);
@@ -232,7 +231,7 @@ public class GameManager : MonoBehaviour
     {
         playerStrokesArray[(int)levelNumber - 1] = 0;
         strokesText.SetText("0");
-
+        strokesText.enabled = true;
     }
 
     public void OpenLevel(int levelId)

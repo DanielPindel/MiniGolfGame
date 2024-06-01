@@ -85,11 +85,15 @@ public class BallController : MonoBehaviour
         return ray.GetPoint(distance);
     }
 
+    //On ball collision with =a wall or an obstacle
     void OnCollisionEnter(Collision collision)
     {
-        Vector3 normal = collision.contacts[0].normal;
-        Vector3 vel = rb.velocity;
-        rb.velocity = Vector3.Reflect(vel, normal);
+        if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Obstacle"))
+        {
+            Vector3 normal = collision.contacts[0].normal;
+            Vector3 vel = rb.velocity;
+            rb.velocity = Vector3.Reflect(vel, normal);
+        }
     }
 
     //Called when ball enters the hole
