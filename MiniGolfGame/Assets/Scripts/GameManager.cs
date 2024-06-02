@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI holeUITitle;
     public ParticleSystem confettiParticles;
 
+    public AudioSource soundFXObject;
+
     public static bool gameIsPaused = false;
 
     // Temporary, for testing
@@ -266,6 +268,31 @@ public class GameManager : MonoBehaviour
     public void playConfettiParticles()
     {
         confettiParticles.Play();
+    }
+
+    public void playRandomSFXClip(AudioClip[] audioClips, Transform spawnTransform, float volume)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        int rand = UnityEngine.Random.Range(0, audioClips.Length);
+        audioSource.clip = audioClips[rand];
+        audioSource.volume = volume;
+        audioSource.Play();
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
+    }
+
+    public void playAllSFXClip(AudioClip[] audioClips, Transform spawnTransform, float volume)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        for(int i = 0; i < audioClips.Length; i++)
+        {
+            audioSource.clip = audioClips[i];
+            audioSource.volume = volume;
+            audioSource.Play();
+            float clipLength = audioSource.clip.length;
+            Destroy(audioSource.gameObject, clipLength);
+
+        }
     }
 
     public void ShowCards()

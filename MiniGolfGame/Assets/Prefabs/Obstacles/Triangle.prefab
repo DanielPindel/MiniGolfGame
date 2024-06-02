@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0690e5ac8195a924790ea98995e56495,
         type: 3}
       propertyPath: m_TagString
-      value: Obstacle
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 0690e5ac8195a924790ea98995e56495,
         type: 3}
@@ -102,6 +102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.893
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0690e5ac8195a924790ea98995e56495,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

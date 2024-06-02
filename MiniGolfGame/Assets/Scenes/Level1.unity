@@ -6158,7 +6158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901978911}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18247207, y: 0.7642952, z: -0.24569826, w: 0.5676171}
+  m_LocalRotation: {x: 0.18247211, y: 0.76429516, z: -0.24569824, w: 0.5676172}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6265,8 +6265,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19273944, y: 0.75971216, z: -0.25952327, w: 0.56421334}
-  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520888}
+  m_LocalRotation: {x: 0.19273946, y: 0.75971216, z: -0.2595233, w: 0.56421334}
+  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6421,7 +6421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075039223}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19273946, y: 0.7597121, z: -0.25952324, w: 0.5642134}
+  m_LocalRotation: {x: 0.19273947, y: 0.7597121, z: -0.25952327, w: 0.5642134}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7880,7 +7880,7 @@ Transform:
   m_GameObject: {fileID: 1654081809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520888}
+  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7988,7 +7988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705648983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20297031, y: 0.7548658, z: -0.27329913, w: 0.56061417}
+  m_LocalRotation: {x: 0.20297031, y: 0.75486577, z: -0.27329913, w: 0.5606142}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8854,6 +8854,21 @@ PrefabInstance:
       propertyPath: state
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5563435887093830641, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
+        type: 3}
+      propertyPath: showCards
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563435887093830641, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
+        type: 3}
+      propertyPath: shootHit1SFX
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563435887093830641, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
+        type: 3}
+      propertyPath: bounceHitSFXArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5739975969747075045, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9228,6 +9243,11 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.m_ColorSpace
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2714318703341538102, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e99032d6ae8c3143b2771fe584e8e3d, type: 2}
     - target: {fileID: 3538127504428570146, guid: 0bb33077c3f476341bfd152591036681,
         type: 3}
       propertyPath: m_CollisionDetection

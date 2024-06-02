@@ -11,6 +11,12 @@ public class BallController : MonoBehaviour
     public float minVelocity = 0.1f;
 
     public ParticleSystem confettiParticles;
+    public AudioClip[] wallHitSoundClips;
+    public AudioClip[] obstacleHitSoundClips;
+    public AudioClip[] whooshSoundClips;
+    public AudioClip[] ballInHoleSoundClips;
+    public AudioClip[] confettiSoundClips;
+
 
     private Vector3 dragStartPos;
     private Rigidbody rb;
@@ -63,6 +69,8 @@ public class BallController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
+                
+
                 Vector3 dragEndPos = GetMousePositionOnXZPlane();
                 Vector3 direction = (dragStartPos - dragEndPos).normalized;
                 float distance = Vector3.Distance(dragStartPos, dragEndPos);
@@ -75,6 +83,8 @@ public class BallController : MonoBehaviour
 
                 lineRenderer.enabled = false;
 
+                Debug.Log("Force: " + force.magnitude/maxForce + "\n");
+                GameManager.Instance.playRandomSFXClip(whooshSoundClips, transform, force.magnitude / maxForce / 2);
                 GameManager.Instance.addStrokeToCurrentLevel();
             }
         }
@@ -96,6 +106,14 @@ public class BallController : MonoBehaviour
         {
             Vector3 normal = collision.contacts[0].normal;
             Vector3 vel = rb.velocity;
+            if (collision.collider.CompareTag("Wall"))
+            {
+                GameManager.Instance.playRandomSFXClip(wallHitSoundClips, transform, vel.magnitude);
+            }
+            else
+            {
+                GameManager.Instance.playRandomSFXClip(obstacleHitSoundClips, transform, vel.magnitude);
+            }
             rb.velocity = Vector3.Reflect(vel, normal);
         }
     }
@@ -105,6 +123,8 @@ public class BallController : MonoBehaviour
     {
         if(other.CompareTag("Hole"))
         {
+            GameManager.Instance.playRandomSFXClip(ballInHoleSoundClips, transform, 0.2f);
+            GameManager.Instance.playAllSFXClip(confettiSoundClips, transform, 1f);
             GameManager.Instance.setHoleUIActive(true);
             isInputActive = false;
             confettiParticles.Play();
