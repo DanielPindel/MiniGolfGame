@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
@@ -33,6 +34,7 @@ public class BallController : MonoBehaviour
         lineRenderer.enabled = false;
         ballStartingPos = transform.position;
         isInputActive = true;
+        confettiParticles = GameObject.Find("ConfettiParticles").GetComponent<ParticleSystem>();
     }
 
     void Update()

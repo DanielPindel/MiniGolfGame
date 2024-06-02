@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 347a0d81bfc9ff340ae3893d5760a70b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - confettiParticles: {fileID: 154261654481136924, guid: be0255c7654e1b8449c3351679bee9e2,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

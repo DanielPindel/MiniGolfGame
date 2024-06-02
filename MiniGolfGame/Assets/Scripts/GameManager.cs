@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
+    public AudioClip buttonSoundClip;
+    public AudioClip startLevelSFXClip;
+
     GameObject ball;
     GameObject cards;
     public int[] playerStrokesArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -180,6 +183,7 @@ public class GameManager : MonoBehaviour
 
     private void StartLevel()
     {
+        playStartLevelSFX();
         ball = GameObject.FindGameObjectWithTag("Player");
         holeUI = GameObject.Find("HoleUI");
         strokesText = GameObject.Find("StrokesText").GetComponent<TextMeshProUGUI>();
@@ -307,6 +311,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void playSFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
+        audioSource.Play();
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
+    }
+
+    public void playButtonClick()
+    {
+        playSFXClip(buttonSoundClip, transform, 1f);
+    }
+
+    public void playStartLevelSFX()
+    {
+        playSFXClip(startLevelSFXClip, transform, 1f);
+    }
+
     public void ShowCards()
     {
         cards.GetComponent<CardsController>().ShowCards();
@@ -327,4 +351,5 @@ public class GameManager : MonoBehaviour
     {
         ball.GetComponent<BallController>().RaiseForceMultiplier();
     }
+
 }

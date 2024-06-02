@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bfe7fe213323844a915b32bf6df325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSoundClip: {fileID: 8300000, guid: c3cf189d6557a10439093bbc5a15e99f, type: 3}
+  startLevelSFXClip: {fileID: 8300000, guid: 6da7d74179af55c46a7272267a38de43, type: 3}
   playerStrokesArray: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  playerBestScore: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   holeUI: {fileID: 0}
   strokesText: {fileID: 0}
   holeUITitle: {fileID: 0}
