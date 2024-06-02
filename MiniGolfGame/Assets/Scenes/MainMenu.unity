@@ -476,9 +476,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1162,9 +1162,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2524,9 +2524,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2679,18 +2679,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &706258370 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5563435887093830641, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1282602031}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00bfe7fe213323844a915b32bf6df325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &773696330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4019,9 +4007,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5045,9 +5033,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5253,9 +5241,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5386,9 +5374,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5854,6 +5842,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670299867}
   m_CullTransparentMesh: 1
+--- !u!1 &1691627435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1691627437}
+  - component: {fileID: 1691627436}
+  m_Layer: 0
+  m_Name: MenuScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1691627436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691627435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db0fde3549ceb34ba30a561b91f4ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freeLookCamera: {fileID: 0}
+  mouseSensitivity: 5
+  smoothingFactor: 2
+  decelerationFactor: 0.95
+  levelState: 0
+--- !u!4 &1691627437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691627435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1814300391
 GameObject:
   m_ObjectHideFlags: 0
@@ -6363,9 +6400,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6762,9 +6799,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6970,9 +7007,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 706258370}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenLevel
+      - m_Target: {fileID: 1691627436}
+        m_TargetAssemblyTypeName: LevelScene, Assembly-CSharp
+        m_MethodName: OpenScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7160,6 +7197,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1691627437}
   - {fileID: 1649008632}
   - {fileID: 988507528}
   - {fileID: 1897034774}

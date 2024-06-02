@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
-    //GameObject ball;
+    GameObject ball;
+    GameObject cards;
     public int[] playerStrokesArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public GameObject holeUI;
     public TextMeshProUGUI strokesText;
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     public ParticleSystem confettiParticles;
 
     public static bool gameIsPaused = false;
+
+    // Temporary, for testing
+    public bool showCards = false;
 
     bool startNextScene;
     //string nextSceneName;
@@ -159,6 +163,10 @@ public class GameManager : MonoBehaviour
 
     private void LevelLoop()
     {
+        if(showCards)
+        {
+            ShowCards();
+        }
         if (startNextScene)
         {
             startNextScene = false;
@@ -169,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     private void StartLevel()
     {
-        //ball = GameObject.FindGameObjectWithTag("Player");
+        ball = GameObject.FindGameObjectWithTag("Player");
         holeUI = GameObject.Find("HoleUI");
         strokesText = GameObject.Find("StrokesText").GetComponent<TextMeshProUGUI>();
         levelNumber = GetCurrentLevelNumber();
@@ -177,6 +185,7 @@ public class GameManager : MonoBehaviour
         strokesText.SetText("0");
         holeUI.SetActive(false);
         strokesText.enabled = true;
+        cards = GameObject.FindGameObjectWithTag("Cards");
     }
 
 
@@ -191,8 +200,6 @@ public class GameManager : MonoBehaviour
         state = GameStates.MainMenu;
         SceneManager.LoadScene(SceneNameToString(state));
     }
-
-
 
     public void setHoleUIActive(bool isActive)
     {
@@ -259,5 +266,26 @@ public class GameManager : MonoBehaviour
     public void playConfettiParticles()
     {
         confettiParticles.Play();
+    }
+
+    public void ShowCards()
+    {
+        cards.GetComponent<CardsController>().ShowCards();
+    }
+
+    public void HideArrow()
+    {
+        LineRenderer lineRenderer = ball.GetComponent<LineRenderer>();
+        Color startColor = lineRenderer.startColor;
+        Color endColor = lineRenderer.endColor;
+        startColor.a = 0;
+        endColor.a = 0;
+        lineRenderer.startColor = startColor;
+        lineRenderer.endColor = endColor;
+    }
+
+    public void BoostBallPower()
+    {
+        ball.GetComponent<BallController>().RaiseForceMultiplier();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public float forceMultiplier = 1f;
+    public float boostedForceMultiplier = 2f;
     public float maxForce = 5f;
     public float maxDragDistance = 1f;
     public float minVelocity = 0.1f;
@@ -127,5 +128,10 @@ public class BallController : MonoBehaviour
         yield return new WaitForSeconds(1);
         rb.constraints = RigidbodyConstraints.None;
         isInputActive = true;
+    }
+
+    public void RaiseForceMultiplier()
+    {
+        forceMultiplier = boostedForceMultiplier;
     }
 }

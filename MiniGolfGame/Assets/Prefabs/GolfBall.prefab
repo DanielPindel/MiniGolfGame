@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolfBall
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d8ff87798dc8b34b8129d8b66050859,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -116,7 +121,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &5548871190332584530
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -228,7 +233,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -255,6 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceMultiplier: 1
+  boostedForceMultiplier: 3
   maxForce: 5
   maxDragDistance: 1
   minVelocity: 0.1
+  confettiParticles: {fileID: 0}

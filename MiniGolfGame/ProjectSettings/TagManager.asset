@@ -10,6 +10,7 @@ TagManager:
   - Hole
   - Wall
   - Obstacle
+  - Cards
   layers:
   - Default
   - TransparentFX
