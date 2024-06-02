@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0d8ff87798dc8b34b8129d8b66050859,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e99032d6ae8c3143b2771fe584e8e3d, type: 2}
     - target: {fileID: 919132149155446097, guid: 0d8ff87798dc8b34b8129d8b66050859,
         type: 3}
       propertyPath: m_Name
@@ -265,3 +270,24 @@ MonoBehaviour:
   maxDragDistance: 1
   minVelocity: 0.1
   confettiParticles: {fileID: 0}
+  wallHitSoundClips:
+  - {fileID: 8300000, guid: 348d34bf1b2d306418dfa3fcd4e5552d, type: 3}
+  - {fileID: 8300000, guid: d28868e8315dee84e9829115249e32f4, type: 3}
+  - {fileID: 8300000, guid: 1d4a286439cd1f544b207cfdf63908bb, type: 3}
+  - {fileID: 8300000, guid: 88772e161a0d27f4682fa17d14543b0d, type: 3}
+  obstacleHitSoundClips:
+  - {fileID: 8300000, guid: de290ed16d06f8845b673c3ee80d1609, type: 3}
+  - {fileID: 8300000, guid: f6d50180227b8c6409d2d4fe9074bf00, type: 3}
+  - {fileID: 8300000, guid: c558c99632862d44ca7ffb4ce5c9a2ca, type: 3}
+  whooshSoundClips:
+  - {fileID: 8300000, guid: 3176227df419f2946a5e91f52a968c31, type: 3}
+  - {fileID: 8300000, guid: be3f738226a67ea47bbaf710004f1187, type: 3}
+  - {fileID: 8300000, guid: 440eabb9a5c32f14895ba175c32aae8a, type: 3}
+  - {fileID: 8300000, guid: 2b2d96131a0272240a6eca84f6dc2df3, type: 3}
+  ballInHoleSoundClips:
+  - {fileID: 8300000, guid: 39863c35f18214348b31d18fca29eb50, type: 3}
+  - {fileID: 8300000, guid: 89bc313487abb7447b97497dfd8c43e9, type: 3}
+  - {fileID: 8300000, guid: 6dc484518a73b874fb7ccf57f08c5031, type: 3}
+  confettiSoundClips:
+  - {fileID: 8300000, guid: 9bb855f259e061f49928d08718d84c12, type: 3}
+  - {fileID: 8300000, guid: 2fced51a63e51934191b77f671ce387f, type: 3}

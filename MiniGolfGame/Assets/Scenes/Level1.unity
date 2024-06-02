@@ -6158,7 +6158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901978911}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18247211, y: 0.76429516, z: -0.24569824, w: 0.5676172}
+  m_LocalRotation: {x: 0.18247205, y: 0.7642952, z: -0.24569827, w: 0.56761706}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6265,8 +6265,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19273946, y: 0.75971216, z: -0.2595233, w: 0.56421334}
-  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520885}
+  m_LocalRotation: {x: 0.19273944, y: 0.75971216, z: -0.25952327, w: 0.56421334}
+  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520888}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6421,7 +6421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075039223}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19273947, y: 0.7597121, z: -0.25952327, w: 0.5642134}
+  m_LocalRotation: {x: 0.19273946, y: 0.7597121, z: -0.25952324, w: 0.5642134}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7810,7 +7810,7 @@ MonoBehaviour:
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
-    m_DecelTime: 0.1
+    m_DecelTime: 0.2
     m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -7834,7 +7834,7 @@ MonoBehaviour:
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_DecelTime: 0.2
     m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 1
@@ -7880,7 +7880,7 @@ Transform:
   m_GameObject: {fileID: 1654081809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520885}
+  m_LocalPosition: {x: -2.0059607, y: 3.022, z: 1.8520888}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7988,7 +7988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705648983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20297031, y: 0.75486577, z: -0.27329913, w: 0.5606142}
+  m_LocalRotation: {x: 0.20297031, y: 0.7548658, z: -0.27329913, w: 0.56061417}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8866,6 +8866,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5563435887093830641, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
         type: 3}
+      propertyPath: soundFXObject
+      value: 
+      objectReference: {fileID: 3125634543682807339, guid: 749ac8bcd6aeec049a4581c937b40cda,
+        type: 3}
+    - target: {fileID: 5563435887093830641, guid: ca0d24cec99b9cf4b9de798b8b673a3d,
+        type: 3}
       propertyPath: bounceHitSFXArray.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -8936,7 +8942,6 @@ GameObject:
   - component: {fileID: 9003558451984310066}
   - component: {fileID: 4752043413427285868}
   - component: {fileID: 6083803625090287048}
-  - component: {fileID: 2216965489409417143}
   m_Layer: 5
   m_Name: HoleUI
   m_TagString: Untagged
@@ -9089,18 +9094,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958012201131007614}
   m_CullTransparentMesh: 1
---- !u!114 &2216965489409417143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443454670321958470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d2e4103b8ea9a498a62a211fda62f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2790097351651645826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9233,26 +9226,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 54176787364332948, guid: 0bb33077c3f476341bfd152591036681,
-        type: 3}
-      propertyPath: m_Parameters.generateLightingData
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54176787364332948, guid: 0bb33077c3f476341bfd152591036681,
-        type: 3}
-      propertyPath: m_Parameters.colorGradient.m_ColorSpace
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 2714318703341538102, guid: 0bb33077c3f476341bfd152591036681,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0e99032d6ae8c3143b2771fe584e8e3d, type: 2}
-    - target: {fileID: 3538127504428570146, guid: 0bb33077c3f476341bfd152591036681,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3882136578914578521, guid: 0bb33077c3f476341bfd152591036681,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9305,28 +9283,118 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
         type: 3}
-      propertyPath: holeUI
-      value: 
-      objectReference: {fileID: 1443454670321958470}
-    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
-        type: 3}
-      propertyPath: logicScript
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
-        type: 3}
       propertyPath: confettiParticles
       value: 
       objectReference: {fileID: 681682543}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: whooshSoundClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: wallHitSoundClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: confettiSoundClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'whooshSoundClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3176227df419f2946a5e91f52a968c31, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'whooshSoundClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: be3f738226a67ea47bbaf710004f1187, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'whooshSoundClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 440eabb9a5c32f14895ba175c32aae8a, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'whooshSoundClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b2d96131a0272240a6eca84f6dc2df3, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: ballInHoleSoundClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'wallHitSoundClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 348d34bf1b2d306418dfa3fcd4e5552d, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'wallHitSoundClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d28868e8315dee84e9829115249e32f4, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'wallHitSoundClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d4a286439cd1f544b207cfdf63908bb, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'wallHitSoundClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 88772e161a0d27f4682fa17d14543b0d, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'confettiSoundClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bb855f259e061f49928d08718d84c12, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'confettiSoundClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fced51a63e51934191b77f671ce387f, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: obstacleHitSoundClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'ballInHoleSoundClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 39863c35f18214348b31d18fca29eb50, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'ballInHoleSoundClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 89bc313487abb7447b97497dfd8c43e9, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'ballInHoleSoundClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 6dc484518a73b874fb7ccf57f08c5031, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'obstacleHitSoundClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: de290ed16d06f8845b673c3ee80d1609, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'obstacleHitSoundClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f6d50180227b8c6409d2d4fe9074bf00, type: 3}
+    - target: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+        type: 3}
+      propertyPath: 'obstacleHitSoundClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c558c99632862d44ca7ffb4ce5c9a2ca, type: 3}
     - target: {fileID: 4515929597764741859, guid: 0bb33077c3f476341bfd152591036681,
         type: 3}
       propertyPath: m_Name
       value: GolfBall
-      objectReference: {fileID: 0}
-    - target: {fileID: 5548871190332584530, guid: 0bb33077c3f476341bfd152591036681,
-        type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9544,7 +9612,7 @@ GameObject:
   - component: {fileID: 2009605878760185627}
   - component: {fileID: 2862605141277026785}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HoleUITitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9645,6 +9713,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StrokeCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992740048685234779, guid: c40e3fe6170584941bc278f4d0c78be9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992740048685234779, guid: c40e3fe6170584941bc278f4d0c78be9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992740048685234779, guid: c40e3fe6170584941bc278f4d0c78be9,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992740048685234779, guid: c40e3fe6170584941bc278f4d0c78be9,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992740048685234779, guid: c40e3fe6170584941bc278f4d0c78be9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992740048685234779, guid: c40e3fe6170584941bc278f4d0c78be9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 7043165819413866916, guid: c40e3fe6170584941bc278f4d0c78be9,
         type: 3}

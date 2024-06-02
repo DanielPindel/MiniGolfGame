@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     GameObject ball;
     GameObject cards;
     public int[] playerStrokesArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] playerBestScore = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public GameObject holeUI;
     public TextMeshProUGUI strokesText;
     public TextMeshProUGUI holeUITitle;
@@ -182,12 +183,14 @@ public class GameManager : MonoBehaviour
         ball = GameObject.FindGameObjectWithTag("Player");
         holeUI = GameObject.Find("HoleUI");
         strokesText = GameObject.Find("StrokesText").GetComponent<TextMeshProUGUI>();
+        holeUITitle = GameObject.Find("HoleUITitle").GetComponent<TextMeshProUGUI>();
         levelNumber = GetCurrentLevelNumber();
         nextLevel = "Level" + (levelNumber + 1);
         strokesText.SetText("0");
         holeUI.SetActive(false);
         strokesText.enabled = true;
         cards = GameObject.FindGameObjectWithTag("Cards");
+        resetStrokes();
     }
 
 
@@ -208,8 +211,9 @@ public class GameManager : MonoBehaviour
         holeUI.SetActive(isActive);
         if (isActive)
         {
-            //holeUITitle.SetText("HOLE IN " + strokesText.text + "!");
+            holeUITitle.SetText("HOLE IN " + strokesText.text + "!");
             strokesText.enabled = false;
+            compareWithBestScore();
         }
     }
 
@@ -239,8 +243,16 @@ public class GameManager : MonoBehaviour
     {
         playerStrokesArray[(int)levelNumber - 1]++;
         strokesText.SetText(playerStrokesArray[(int)levelNumber - 1].ToString());
-
     }
+
+    private void compareWithBestScore()
+    {
+        if (playerBestScore[(int)levelNumber - 1] > playerStrokesArray[(int)levelNumber - 1] || playerBestScore[(int)levelNumber - 1] == 0)
+        {
+            playerBestScore[(int)levelNumber - 1] = playerStrokesArray[(int)levelNumber - 1];
+        }
+    }
+
     public void resetStrokes()
     {
         playerStrokesArray[(int)levelNumber - 1] = 0;

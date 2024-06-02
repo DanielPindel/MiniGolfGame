@@ -104,5 +104,7 @@ public class LevelScene : MonoBehaviour
     public void OpenScene(int level)
     {
         GameManager.Instance.OpenLevel(level);
+        Time.timeScale = 1f;
+        GameManager.Instance.setGamePause(false);
     }
 }

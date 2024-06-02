@@ -941,7 +941,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364714385}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.119119376, y: 0.87971914, z: -0.30051854, w: 0.34870258}
+  m_LocalRotation: {x: 0.11911939, y: 0.87971914, z: -0.30051854, w: 0.34870258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1042,7 +1042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549389518}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.119119376, y: 0.87971914, z: -0.30051854, w: 0.34870255}
+  m_LocalRotation: {x: 0.11911937, y: 0.87971914, z: -0.30051854, w: 0.34870252}
   m_LocalPosition: {x: 13.133558, y: 2.865, z: -2.8956933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3384,18 +3384,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6522830690238288408}
   m_CullTransparentMesh: 1
---- !u!114 &1652430936232186833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027338003925119520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d2e4103b8ea9a498a62a211fda62f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2027338003925119520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,7 +3396,6 @@ GameObject:
   - component: {fileID: 8419958642111779668}
   - component: {fileID: 5321008720310788874}
   - component: {fileID: 6648615259501070766}
-  - component: {fileID: 1652430936232186833}
   m_Layer: 5
   m_Name: HoleUI
   m_TagString: Untagged

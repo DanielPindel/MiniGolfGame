@@ -51,10 +51,6 @@ public class PauseMenu : MonoBehaviour
         GameManager.Instance.setGamePause(true);
     }
 
-    public void LoadMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
 
     public void LoadSettings()
     {

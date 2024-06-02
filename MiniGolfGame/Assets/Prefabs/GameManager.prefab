@@ -48,4 +48,9 @@ MonoBehaviour:
   holeUI: {fileID: 0}
   strokesText: {fileID: 0}
   holeUITitle: {fileID: 0}
+  confettiParticles: {fileID: 0}
+  soundFXObject: {fileID: 3125634543682807339, guid: 749ac8bcd6aeec049a4581c937b40cda,
+    type: 3}
+  showCards: 0
+  levelNumber: 1
   state: 0

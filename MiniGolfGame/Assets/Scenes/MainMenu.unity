@@ -2326,7 +2326,6 @@ GameObject:
   - component: {fileID: 659141110}
   - component: {fileID: 659141109}
   - component: {fileID: 659141108}
-  - component: {fileID: 659141111}
   m_Layer: 0
   m_Name: LevelMenu
   m_TagString: Untagged
@@ -2429,18 +2428,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &659141111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659141106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71dda93e8b489a948932932f56184780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &661864674
 GameObject:
   m_ObjectHideFlags: 0

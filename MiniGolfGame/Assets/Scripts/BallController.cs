@@ -83,7 +83,6 @@ public class BallController : MonoBehaviour
 
                 lineRenderer.enabled = false;
 
-                Debug.Log("Force: " + force.magnitude/maxForce + "\n");
                 GameManager.Instance.playRandomSFXClip(whooshSoundClips, transform, force.magnitude / maxForce / 2);
                 GameManager.Instance.addStrokeToCurrentLevel();
             }
@@ -99,7 +98,7 @@ public class BallController : MonoBehaviour
         return ray.GetPoint(distance);
     }
 
-    //On ball collision with =a wall or an obstacle
+    //On ball collision with a wall or an obstacle
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Obstacle"))
