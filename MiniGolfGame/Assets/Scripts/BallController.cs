@@ -155,4 +155,9 @@ public class BallController : MonoBehaviour
     {
         forceMultiplier = boostedForceMultiplier;
     }
+
+    public void InverseForce()
+    {
+        forceMultiplier *= -1;
+    }
 }

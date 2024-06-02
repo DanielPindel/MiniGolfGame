@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Switch;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -352,4 +354,19 @@ public class GameManager : MonoBehaviour
         ball.GetComponent<BallController>().RaiseForceMultiplier();
     }
 
+    public void InverseControls()
+    {
+        ball.GetComponent<BallController>().InverseForce();
+    }
+
+    public void EnvironmentFog(bool active)
+    {
+        GameObject fog = GameObject.Find("Fog");
+        Transform fogTransform = fog.transform.Find("FogPlane");
+        fogTransform.gameObject.SetActive(active);
+
+        var urp = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
+        urp.supportsCameraDepthTexture = active;
+        RenderSettings.fog = active;
+    }
 }
