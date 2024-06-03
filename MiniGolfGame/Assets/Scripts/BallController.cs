@@ -26,20 +26,23 @@ public class BallController : MonoBehaviour
     private bool isInputActive;
     private bool clickHoldStarted;
 
+    private void Awake()
+    {
+        rb = this.GetComponent<Rigidbody>();
+        lineRenderer = this.GetComponent<LineRenderer>();
+        confettiParticles = GameObject.Find("ConfettiParticles").GetComponent<ParticleSystem>();
+    }
 
     void Start()
     {
         forceMultiplier = 20f;
-        boostedForceMultiplier = 20f;
+        boostedForceMultiplier = 40f;
         maxForce = 10f;
         minVelocity = 0.1f;
-        rb = GetComponent<Rigidbody>();
-        lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
         ballStartingPos = transform.position;
         isInputActive = true;
-        confettiParticles = GameObject.Find("ConfettiParticles").GetComponent<ParticleSystem>();
     }
 
     void Update()

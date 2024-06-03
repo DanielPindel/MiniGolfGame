@@ -1015,6 +1015,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: HoleUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5040097707820630731, guid: ecacefd545a6b9845b038f8f87bc700a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1889588719}
+    - target: {fileID: 5040097707820630731, guid: ecacefd545a6b9845b038f8f87bc700a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: callRestartBall
+      objectReference: {fileID: 0}
     - target: {fileID: 5545531626717833611, guid: ecacefd545a6b9845b038f8f87bc700a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2601,6 +2611,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1889588717}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1889588719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4053640531478779296, guid: 0bb33077c3f476341bfd152591036681,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889588717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347a0d81bfc9ff340ae3893d5760a70b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1920894664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,7 +3045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096704854}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.011179462, y: 0.9513816, z: -0.30584106, w: 0.034776025}
+  m_LocalRotation: {x: 0.011179472, y: 0.9513816, z: -0.30584106, w: 0.034776058}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
