@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI strokesText;
     public TextMeshProUGUI holeUITitle;
     public ParticleSystem confettiParticles;
-
+    public GameObject scoreboard;
     public AudioSource soundFXObject;
 
     public static bool gameIsPaused = false;
@@ -196,11 +196,13 @@ public class GameManager : MonoBehaviour
         holeUI = GameObject.Find("HoleUI");
         strokesText = GameObject.Find("StrokesText").GetComponent<TextMeshProUGUI>();
         holeUITitle = GameObject.Find("HoleUITitle").GetComponent<TextMeshProUGUI>();
+        scoreboard = GameObject.Find("Scoreboard");
         levelNumber = GetCurrentLevelNumber();
         nextLevel = "Level" + (levelNumber + 1);
         strokesText.SetText("0");
         holeUI.SetActive(false);
         strokesText.enabled = true;
+        scoreboard.SetActive(false);
         cards = GameObject.FindGameObjectWithTag("Cards");
         resetStrokes();
         if (!bgMusic.isPlaying)
@@ -412,4 +414,6 @@ public class GameManager : MonoBehaviour
     {
         bgMusic.volume = volume;
     }
+
+
 }

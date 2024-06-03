@@ -53,6 +53,8 @@ MonoBehaviour:
   strokesText: {fileID: 0}
   holeUITitle: {fileID: 0}
   confettiParticles: {fileID: 0}
+  scoreboard: {fileID: 4080615498382761426, guid: 5bb3d04777705b84e9c7a1a9d5b70a03,
+    type: 3}
   soundFXObject: {fileID: 3125634543682807339, guid: 749ac8bcd6aeec049a4581c937b40cda,
     type: 3}
   showCards: 0
@@ -68,8 +70,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6d64d5dafcb2c044db79fbe6865afda2, type: 3}
-  m_Resource: {fileID: 8300000, guid: 6d64d5dafcb2c044db79fbe6865afda2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d1777b8078ac96240bd76ae9132f025e, type: 3}
+  m_Resource: {fileID: 8300000, guid: d1777b8078ac96240bd76ae9132f025e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.35
   m_Pitch: 1

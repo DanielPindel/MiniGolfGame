@@ -150,7 +150,7 @@ public class BallController : MonoBehaviour
             isInputActive = false;
             confettiParticles.Play();
         }
-        // If ball somehow goes outside of the tracks
+        // If ball goes outside the tracks
         if (other.CompareTag("Out"))
         {
             isInputActive = false;

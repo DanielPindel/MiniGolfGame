@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelScene : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class LevelScene : MonoBehaviour
 
     void Start()
     {
-        if(freeLookCamera is not null)
+        if (freeLookCamera is not null)
         {
             freeLookCamera.m_XAxis.m_InputAxisName = "";
             freeLookCamera.m_YAxis.m_InputAxisName = "";
@@ -46,7 +47,7 @@ public class LevelScene : MonoBehaviour
 
     void Update()
     {
-        switch(levelState)
+        switch (levelState)
         {
             case LevelStates.Default:
                 CameraMovement();
@@ -61,7 +62,7 @@ public class LevelScene : MonoBehaviour
 
     void CameraMovement()
     {
-        if(freeLookCamera is not null)
+        if (freeLookCamera is not null)
         {
             if (Input.GetMouseButton(1))
             {
@@ -107,5 +108,27 @@ public class LevelScene : MonoBehaviour
         GameManager.Instance.OpenLevel(level);
         Time.timeScale = 1f;
         GameManager.Instance.setGamePause(false);
+    }
+
+    public void setScoreboard()
+    {
+        GameManager.Instance.scoreboard.SetActive(true);
+        int[] arr = GameManager.Instance.playerStrokesArray;
+        GameObject scoresObject = GameObject.Find("Scores");
+        Text scoresText = scoresObject.GetComponent<Text>();
+        scoresText.text = $"{arr[0]}   {arr[1]}   {arr[2]}   {arr[3]}   {arr[4]}   {arr[5]}   {arr[6]}   {arr[7]}   {arr[8]}   {arr[9]}";
+    }
+
+    public void toggleScoreboard()
+    {
+        if (GameManager.Instance.scoreboard.activeInHierarchy)
+        {
+            GameManager.Instance.scoreboard.SetActive(false);
+        }
+        else
+        {
+            GameManager.Instance.scoreboard.SetActive(true);
+            setScoreboard();
+        }
     }
 }
