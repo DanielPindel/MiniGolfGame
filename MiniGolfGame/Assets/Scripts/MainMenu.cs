@@ -20,6 +20,12 @@ public class MainMenu : MonoBehaviour
         GameManager.Instance.setBGMusicVolume(slider.value);
     }
 
+    public void setSliderValue()
+    {
+        Slider slider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        slider.value = GameManager.Instance.getBGMusicVolume();
+    }
+
     public void Exit()
     {
        

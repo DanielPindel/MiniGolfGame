@@ -18,8 +18,12 @@ public class GameManager : MonoBehaviour
 
     public AudioClip buttonSoundClip;
     public AudioClip startLevelSFXClip;
+    public Sprite musicOffIcon;
+    public Sprite musicOnIcon;
+
     private AudioSource bgMusic;
     private bool wasMusicToggledOff;
+    private GameObject musicButton;
 
     GameObject ball;
     GameObject cards;
@@ -197,6 +201,8 @@ public class GameManager : MonoBehaviour
         strokesText = GameObject.Find("StrokesText").GetComponent<TextMeshProUGUI>();
         holeUITitle = GameObject.Find("HoleUITitle").GetComponent<TextMeshProUGUI>();
         scoreboard = GameObject.Find("Scoreboard");
+        musicButton = GameObject.Find("SoundButton");
+        musicButton.GetComponent<UnityEngine.UI.Image>().sprite = musicOnIcon;
         levelNumber = GetCurrentLevelNumber();
         nextLevel = "Level" + (levelNumber + 1);
         strokesText.SetText("0");
@@ -210,6 +216,10 @@ public class GameManager : MonoBehaviour
             if (!wasMusicToggledOff)
             {
                 bgMusic.Play();
+            }
+            else
+            {
+                musicButton.GetComponent<UnityEngine.UI.Image>().sprite = musicOffIcon;
             }
         }
     }
@@ -403,16 +413,22 @@ public class GameManager : MonoBehaviour
         {
             bgMusic.Pause();
             wasMusicToggledOff = true;
+            musicButton.GetComponent<UnityEngine.UI.Image>().sprite = musicOffIcon;
         }
         else
         {
             bgMusic.Play();
             wasMusicToggledOff = false;
+            musicButton.GetComponent<UnityEngine.UI.Image>().sprite = musicOnIcon;
         }
     }
     public void setBGMusicVolume(float volume)
     {
         bgMusic.volume = volume;
+    }
+    public float getBGMusicVolume()
+    {
+        return bgMusic.volume;
     }
 
 

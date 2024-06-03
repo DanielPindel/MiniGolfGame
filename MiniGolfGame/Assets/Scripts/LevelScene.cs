@@ -110,6 +110,8 @@ public class LevelScene : MonoBehaviour
         GameManager.Instance.setGamePause(false);
     }
 
+    
+
     public void setScoreboard()
     {
         GameManager.Instance.scoreboard.SetActive(true);
