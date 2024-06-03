@@ -9,6 +9,8 @@ using UnityEngine.InputSystem.Switch;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public AudioClip buttonSoundClip;
     public AudioClip startLevelSFXClip;
+    private AudioSource bgMusic;
+    private bool wasMusicToggledOff;
 
     GameObject ball;
     GameObject cards;
@@ -69,6 +73,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        bgMusic = this.GetComponent<AudioSource>();
     }
 
 
@@ -197,6 +203,13 @@ public class GameManager : MonoBehaviour
         strokesText.enabled = true;
         cards = GameObject.FindGameObjectWithTag("Cards");
         resetStrokes();
+        if (!bgMusic.isPlaying)
+        {
+            if (!wasMusicToggledOff)
+            {
+                bgMusic.Play();
+            }
+        }
     }
 
 
@@ -368,5 +381,35 @@ public class GameManager : MonoBehaviour
         var urp = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
         urp.supportsCameraDepthTexture = active;
         RenderSettings.fog = active;
+    }
+
+    public void stopBGMusic()
+    {
+        bgMusic.Stop();
+    }
+    public void pauseBGMusic()
+    {
+        bgMusic.Pause();
+    }
+    public void playBGMusic()
+    {
+        bgMusic.Play();
+    }
+    public void toggleBGMusic()
+    {
+        if(bgMusic.isPlaying)
+        {
+            bgMusic.Pause();
+            wasMusicToggledOff = true;
+        }
+        else
+        {
+            bgMusic.Play();
+            wasMusicToggledOff = false;
+        }
+    }
+    public void setBGMusicVolume(float volume)
+    {
+        bgMusic.volume = volume;
     }
 }

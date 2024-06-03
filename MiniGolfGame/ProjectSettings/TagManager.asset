@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Obstacle
   - Cards
+  - Out
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class LevelScene : MonoBehaviour
 {
     GameObject scene;
 
+#nullable enable
     public CinemachineFreeLook? freeLookCamera;
     public float mouseSensitivity = 5f;
     public float smoothingFactor = 2f;
@@ -36,7 +37,7 @@ public class LevelScene : MonoBehaviour
 
     void Start()
     {
-        if(freeLookCamera)
+        if(freeLookCamera is not null)
         {
             freeLookCamera.m_XAxis.m_InputAxisName = "";
             freeLookCamera.m_YAxis.m_InputAxisName = "";
@@ -60,7 +61,7 @@ public class LevelScene : MonoBehaviour
 
     void CameraMovement()
     {
-        if(freeLookCamera)
+        if(freeLookCamera is not null)
         {
             if (Input.GetMouseButton(1))
             {

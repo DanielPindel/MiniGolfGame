@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MainMenu : MonoBehaviour
@@ -11,6 +12,12 @@ public class MainMenu : MonoBehaviour
     {
         GameManager.Instance.playSFXClip(GameManager.Instance.buttonSoundClip, transform, 1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void changeMusicVolume()
+    {
+        Slider slider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        GameManager.Instance.setBGMusicVolume(slider.value);
     }
 
     public void Exit()

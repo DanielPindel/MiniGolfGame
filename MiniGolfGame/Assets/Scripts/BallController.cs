@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public float forceMultiplier = 1f;
-    public float boostedForceMultiplier = 2f;
-    public float maxForce = 5f;
-    public float maxDragDistance = 1f;
-    public float minVelocity = 0.1f;
+    public float forceMultiplier;
+    public float boostedForceMultiplier;
+    public float maxForce;
+    //public float maxDragDistance = 1f;
+    public float minVelocity;
 
     public ParticleSystem confettiParticles;
     public AudioClip[] wallHitSoundClips;
@@ -24,10 +24,15 @@ public class BallController : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3 ballStartingPos;
     private bool isInputActive;
+    private bool clickHoldStarted;
 
 
     void Start()
     {
+        forceMultiplier = 20f;
+        boostedForceMultiplier = 20f;
+        maxForce = 10f;
+        minVelocity = 0.1f;
         rb = GetComponent<Rigidbody>();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
@@ -56,14 +61,25 @@ public class BallController : MonoBehaviour
             {
                 dragStartPos = GetMousePositionOnXZPlane();
                 lineRenderer.enabled = true;
+                clickHoldStarted = true;
+            }
+
+            // If the ball stops after we click and keep holding the mouse, the line will not show but the ball
+            // will register the input and shoot after we let go of the mouse button. This is here to prevent that
+            if (!clickHoldStarted)
+            {
+                return;
             }
 
             if (Input.GetMouseButton(0))
             {
                 Vector3 dragCurrentPos = GetMousePositionOnXZPlane();
                 Vector3 direction = (dragStartPos - dragCurrentPos).normalized;
-                float distance = Mathf.Min(Vector3.Distance(dragStartPos, dragCurrentPos), maxDragDistance);
-                Vector3 endPosition = transform.position + direction * distance;
+                float distance = Vector3.Distance(dragStartPos, dragCurrentPos) / maxForce;
+                Vector3 force = new Vector3(direction.x, 0, direction.z) * distance * forceMultiplier;
+                force = Vector3.ClampMagnitude(force, maxForce);
+
+                Vector3 endPosition = transform.position + direction * force.magnitude / maxForce;
 
                 lineRenderer.SetPosition(0, transform.position);
                 lineRenderer.SetPosition(1, endPosition);
@@ -71,25 +87,29 @@ public class BallController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                
-
                 Vector3 dragEndPos = GetMousePositionOnXZPlane();
                 Vector3 direction = (dragStartPos - dragEndPos).normalized;
-                float distance = Vector3.Distance(dragStartPos, dragEndPos);
-
+                float distance = Vector3.Distance(dragStartPos, dragEndPos) / maxForce;
                 Vector3 force = new Vector3(direction.x, 0, direction.z) * distance * forceMultiplier;
                 force = Vector3.ClampMagnitude(force, maxForce);
-                rb.AddForce(force, ForceMode.Impulse);
-
-
 
                 lineRenderer.enabled = false;
+                clickHoldStarted = false;
+
+                // Allows the player to cancel shooting with letting mouse button go while cursor is on the ball.
+                if (force.magnitude < 0.2)
+                {
+                    return;
+                }
+
+                rb.AddForce(force, ForceMode.Impulse);
 
                 GameManager.Instance.playRandomSFXClip(whooshSoundClips, transform, force.magnitude / maxForce / 2);
                 GameManager.Instance.addStrokeToCurrentLevel();
             }
         }
     }
+
 
     private Vector3 GetMousePositionOnXZPlane()
     {
@@ -119,7 +139,7 @@ public class BallController : MonoBehaviour
         }
     }
 
-    //Called when ball enters the hole
+    // Called when ball enters the hole
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Hole"))
@@ -129,6 +149,12 @@ public class BallController : MonoBehaviour
             GameManager.Instance.setHoleUIActive(true);
             isInputActive = false;
             confettiParticles.Play();
+        }
+        // If ball somehow goes outside of the tracks
+        if (other.CompareTag("Out"))
+        {
+            isInputActive = false;
+            StartCoroutine(restartBall());
         }
     }
 
