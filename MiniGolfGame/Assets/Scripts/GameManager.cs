@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Sprite musicOnIcon;
 
     private AudioSource bgMusic;
-    private bool wasMusicToggledOff;
+    public bool wasMusicToggledOff;
     private GameObject musicButton;
 
     GameObject ball;
@@ -233,6 +233,7 @@ public class GameManager : MonoBehaviour
     }
     public void MainMenu()
     {
+        pauseBGMusic();
         state = GameStates.MainMenu;
         SceneManager.LoadScene(SceneNameToString(state));
     }

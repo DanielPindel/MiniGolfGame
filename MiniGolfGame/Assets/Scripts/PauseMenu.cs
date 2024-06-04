@@ -31,7 +31,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        GameManager.Instance.playBGMusic();
+        if (!GameManager.Instance.wasMusicToggledOff)
+        {
+            GameManager.Instance.playBGMusic();
+        }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         StartCoroutine(blockInputAfterResume());
