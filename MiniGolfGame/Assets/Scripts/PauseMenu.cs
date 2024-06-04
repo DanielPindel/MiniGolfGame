@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    //public static bool gameIsPaused = false;
+    /**
+    * A public Game Object for referencing Pause Menu UI.
+    */
     public GameObject pauseMenuUI;
 
+    /**
+    * A member function causing an update every frame.
+    */
     void Update()
     {
         if (GameManager.Instance.isHoleUIActive())
@@ -29,6 +34,10 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /**
+    * A public member function for resuming the game.
+    * It resumes the game and unpauses the background music if it was not toggled off.
+    */
     public void Resume()
     {
         if (!GameManager.Instance.wasMusicToggledOff)
@@ -40,14 +49,19 @@ public class PauseMenu : MonoBehaviour
         StartCoroutine(blockInputAfterResume());
     }
 
-    // Without this coroutine clicking on the Resume button makes the ball move, so this function waits a bit
-    // before setting the game pause to false, which blocks the mouse input for the ball in the BallController
+    /**
+    * A private coroutine to block ball input for a short period of time after resuming back to the game.
+    */
     IEnumerator blockInputAfterResume()
     {
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.setGamePause(false);
     }
 
+    /**
+    * A public member function for pausing the game.
+    * It pauses both the game and the background music.
+    */
     void Pause()
     {
         GameManager.Instance.pauseBGMusic();
@@ -56,18 +70,24 @@ public class PauseMenu : MonoBehaviour
         GameManager.Instance.setGamePause(true);
     }
 
+    /**
+    * A public member function for toggling the background music.
+    */
     public void toggleMusic()
     {
         GameManager.Instance.toggleBGMusic();
     }
 
 
-    public void LoadSettings()
+    /*public void LoadSettings()
     {
         pauseMenuUI.SetActive(false);
 
-    }
+    }*/
 
+    /**
+    * A public member function for exiting the program.
+    */
     public void Exit()
     {
         UnityEngine.Application.Quit();

@@ -267,7 +267,6 @@ MonoBehaviour:
   forceMultiplier: 1
   boostedForceMultiplier: 3
   maxForce: 5
-  maxDragDistance: 1
   minVelocity: 0.1
   confettiParticles: {fileID: 0}
   wallHitSoundClips:

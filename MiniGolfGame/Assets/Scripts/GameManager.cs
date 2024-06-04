@@ -16,36 +16,97 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
+    /**
+    * A public Audio Clip variable for storing button click sound effect.
+    */
     public AudioClip buttonSoundClip;
+
+    /**
+    * A public Audio Clip variable for storing the sound effect for starting the level.
+    */
     public AudioClip startLevelSFXClip;
+
+    /**
+    * A public Sprite variable for storing the music-off icon.
+    */
     public Sprite musicOffIcon;
+
+    /**
+    * A public Sprite variable for storing the music-on icon.
+    */
     public Sprite musicOnIcon;
 
+    /**
+    * A private Audio Source variable for storing the background music.
+    */
     private AudioSource bgMusic;
+
+    /**
+    * A public bool variable for checking whether the music was toggled off by the user.
+    */
     public bool wasMusicToggledOff;
+
+    /**
+    * A private Game Object variable and referencing the music button.
+    */
     private GameObject musicButton;
 
-    GameObject ball;
-    GameObject cards;
+    /**
+    * A public int array for storing player stroke scores.
+    */
     public int[] playerStrokesArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    /**
+    * A public int array for storing player best stroke scores.
+    */
     public int[] playerBestScore = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    /**
+    * A public Game Object variable and referencing the Hole UI.
+    */
     public GameObject holeUI;
+
+    /**
+    * A public Text variable for referencing the strokes text.
+    */
     public TextMeshProUGUI strokesText;
+
+    /**
+    * A public Text variable for referencing the Hole UI title.
+    */
     public TextMeshProUGUI holeUITitle;
-    public ParticleSystem confettiParticles;
+
+    /**
+    * A public Game Object variable for referencing the scoreboard.
+    */
     public GameObject scoreboard;
+
+    /**
+    * A public Audio Source variable for referencing the sound effect object.
+    */
     public AudioSource soundFXObject;
 
+    /**
+    * A public bool variable for checking whether the game is paused.
+    */
     public static bool gameIsPaused = false;
 
     // Temporary, for testing
     public bool showCards = false;
 
-    bool startNextScene;
-    //string nextSceneName;
-    //string lastSceneName;
+    /**
+    * A private Game Object variable for referencing the ball.
+    */
+    GameObject ball;
 
-    //string levelName;
+    /**
+    * A private Game Object variable for referencing the cards.
+    */
+    GameObject cards;
+
+
+
+    bool startNextScene;
     public int levelNumber = 1;
     string nextLevel;
 
@@ -137,19 +198,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*public void StartNextScene()
-    {
-        startNextScene = true;
-        nextSceneName = lastSceneName;
-    }*/
-
-    //Starts the specified scene
-    /*public void StartScene(GameStates scene)
-    {
-        startNextScene = true;
-        nextSceneName = SceneNameToString(scene);
-    }*/
-
 
     public string SceneNameToString(GameStates scene)
     {
@@ -167,18 +215,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-    /*private void MainMenuLoop()
-    {
-        if(startNextScene)
-        {
-            startNextScene = false;
-            state = GameStates.LevelSelect;
-            SceneManager.LoadScene("LevelSelect");
-        }
-    }*/
-
-
     private void LevelLoop()
     {
         if(showCards)
@@ -192,7 +228,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    /**
+    * A private member function for starting each level.
+    * It assigns appropriate values to many different variables at the start of the level scene, as well as toggles some objects on or off.
+    */
     private void StartLevel()
     {
         playStartLevelSFX();
@@ -238,6 +277,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneNameToString(state));
     }
 
+    /**
+     * A public member function that toggles the HoleUI (final menu).
+     * It sets the HoleUI and strokes text visibility and modifies the HoleUI title text 
+     * with the amount of strokes player has won with.
+     * @param isActive a bool value for toggling the HoleUI on and off.
+     */
     public void setHoleUIActive(bool isActive)
     {
         holeUI.SetActive(isActive);
@@ -249,8 +294,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /**
+     * A public member function that gets the HoleUI (final menu) activity value.
+     * @return the HoleUI activity value.
+     */
     public bool isHoleUIActive() { return holeUI.activeSelf; }
 
+    /**
+     * A public member function that gets the number of the currently active level.
+     * @return the currently active level number.
+     */
     public int GetCurrentLevelNumber()
     {
         string levelName = SceneNameToString(state);
@@ -271,12 +324,20 @@ public class GameManager : MonoBehaviour
             return 1;
         }
     }
+
+    /**
+     * A public member function that adds 1 to array with player strokes.
+     * The array index where the number is added is the currently active level number.
+     */
     public void addStrokeToCurrentLevel()
     {
         playerStrokesArray[(int)levelNumber - 1]++;
         strokesText.SetText(playerStrokesArray[(int)levelNumber - 1].ToString());
     }
 
+    /**
+    * A private member function that compares current score with best (lowest) score saved.
+    */
     private void compareWithBestScore()
     {
         if (playerBestScore[(int)levelNumber - 1] > playerStrokesArray[(int)levelNumber - 1] || playerBestScore[(int)levelNumber - 1] == 0)
@@ -285,6 +346,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /**
+    * A public member function that resets player strokes for the currently active level.
+    */
     public void resetStrokes()
     {
         playerStrokesArray[(int)levelNumber - 1] = 0;
@@ -292,6 +356,10 @@ public class GameManager : MonoBehaviour
         strokesText.enabled = true;
     }
 
+    /**
+    * A public member function that loads a level scene given by the id.
+    * @param id of the level to be opened
+    */
     public void OpenLevel(int levelId)
     {
         string levelName = "Level" + levelId;
@@ -299,21 +367,31 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
+    /**
+    * A public member function that returns whether the game is currently paused.
+    * @return the bool value of whether the game is paused.
+    */
     public bool isGamePaused()
     {
         return gameIsPaused;
     }
 
+    /**
+    * A public member function that toggles the game pause.
+    * @param the bool value of desired toggle (on or off)
+    */
     public void setGamePause(bool pauseGame)
     {
         gameIsPaused = pauseGame;
     }
 
-    public void playConfettiParticles()
-    {
-        confettiParticles.Play();
-    }
 
+    /**
+    * A public member function that plays a random sound effect clip from a given array.
+    * @param audioClips the array of sound clips to choose from.
+    * @param spawnTransform a variable for position for instantiating the AudioSource object.
+    * @param volume the volume of the sound effect played.
+    */
     public void playRandomSFXClip(AudioClip[] audioClips, Transform spawnTransform, float volume)
     {
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
@@ -325,6 +403,12 @@ public class GameManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength);
     }
 
+    /**
+    * A public member function that plays all sound effect clips from a given array.
+    * @param audioClips the array of sound clips to play.
+    * @param spawnTransform a variable for position for instantiating the AudioSource object.
+    * @param volume the volume of the sound effects played.
+    */
     public void playAllSFXClip(AudioClip[] audioClips, Transform spawnTransform, float volume)
     {
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
@@ -339,6 +423,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /**
+    * A public member function that plays a given sound effect clip.
+    * @param audioClip sound clip to play.
+    * @param spawnTransform a variable for position for instantiating the AudioSource object.
+    * @param volume the volume of the sound effect played.
+    */
     public void playSFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
@@ -349,11 +439,17 @@ public class GameManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength);
     }
 
+    /**
+    * A public member function that plays the button click sound effect clip.
+    */
     public void playButtonClick()
     {
         playSFXClip(buttonSoundClip, transform, 1f);
     }
 
+    /**
+    * A public member function that plays the sound effect clip for starting a level.
+    */
     public void playStartLevelSFX()
     {
         playSFXClip(startLevelSFXClip, transform, 1f);
@@ -396,18 +492,35 @@ public class GameManager : MonoBehaviour
         RenderSettings.fog = active;
     }
 
+    /**
+    * A public member function that stops background music.
+    */
     public void stopBGMusic()
     {
         bgMusic.Stop();
     }
+
+    /**
+    * A public member function that pauses background music.
+    */
     public void pauseBGMusic()
     {
         bgMusic.Pause();
     }
+
+    /**
+    * A public member function that plays background music.
+    */
     public void playBGMusic()
     {
         bgMusic.Play();
     }
+
+    /**
+    * A public member function that toggles background music.
+    * It checks whether the background music is playing and sets the opposite state, 
+    * while also changing music toggle icon image.
+    */
     public void toggleBGMusic()
     {
         if(bgMusic.isPlaying)
@@ -423,14 +536,29 @@ public class GameManager : MonoBehaviour
             musicButton.GetComponent<UnityEngine.UI.Image>().sprite = musicOnIcon;
         }
     }
+
+    /**
+    * A public member function that sets background music volume.
+    * @param volume the volume for background music.
+    */
     public void setBGMusicVolume(float volume)
     {
         bgMusic.volume = volume;
     }
+
+    /**
+    * A public member function that reads background music volume.
+    * @return background music volume.
+    */
     public float getBGMusicVolume()
     {
         return bgMusic.volume;
     }
 
+
+    public void activateFog()
+    {
+        EnvironmentFog(true);
+    }
 
 }

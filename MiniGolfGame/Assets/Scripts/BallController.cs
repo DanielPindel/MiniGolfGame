@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+/**
+ *  A ball controller class. It controls the ball behavior and everything related to it such as ball sounds.
+ */
 public class BallController : MonoBehaviour
 {
     public float forceMultiplier;
@@ -11,20 +15,66 @@ public class BallController : MonoBehaviour
     //public float maxDragDistance = 1f;
     public float minVelocity;
 
+    /**
+    * A public Particle System variable for referencing confetti particles.
+    */
     public ParticleSystem confettiParticles;
+
+    /**
+    * A public Audio Clip array for storing wall hit sound effect clips used when the ball hits a wall.
+    */
     public AudioClip[] wallHitSoundClips;
+
+    /**
+    * A public Audio Clip array for storing obstacle hit sound effect clips used when the ball hits an obstacle.
+    */
     public AudioClip[] obstacleHitSoundClips;
+
+    /**
+    * A public Audio Clip array for storing whoosh sound effect clips used when player shoots the ball.
+    */
     public AudioClip[] whooshSoundClips;
+
+    /**
+    * A public Audio Clip array for storing sound effect clips used when ball falls into the hole.
+    */
     public AudioClip[] ballInHoleSoundClips;
+
+    /**
+    * A public Audio Clip array for storing confetti sound effect clips used confetti shoots out after the ball lands in the hole.
+    */
     public AudioClip[] confettiSoundClips;
 
-
+    /**
+    * A private Vector3 variable for storing starting position of the mouse cursor drag.
+    */
     private Vector3 dragStartPos;
+
+    /**
+     * A private Rigidbody variable for referencing ball's rigid body component.
+     */
     private Rigidbody rb;
+
+    /**
+     * A private line renderer variable for referencing ball's line renderer component.
+     */
     private LineRenderer lineRenderer;
+
+    /**
+    * A private Vector3 variable for storing starting position of the ball at the start of the level.
+    */
     private Vector3 ballStartingPos;
+
+    /**
+    * A private bool variable checking whether the mouse input for the ball is set to be active.
+    */
     private bool isInputActive;
+
+    /**
+    * A private bool variable checking whether the mouse hold was started.
+    */
     private bool clickHoldStarted;
+
 
     private void Awake()
     {
@@ -33,6 +83,10 @@ public class BallController : MonoBehaviour
         confettiParticles = GameObject.Find("ConfettiParticles").GetComponent<ParticleSystem>();
     }
 
+
+    /**
+    * A member function called at the start of the scene.
+    */
     void Start()
     {
         forceMultiplier = 20f;
@@ -45,6 +99,9 @@ public class BallController : MonoBehaviour
         isInputActive = true;
     }
 
+    /**
+    * A member function causing an update every frame.
+    */
     void Update()
     {
         //Stops any further code if the ball is in the hole or restarting its position
@@ -123,7 +180,13 @@ public class BallController : MonoBehaviour
         return ray.GetPoint(distance);
     }
 
-    //On ball collision with a wall or an obstacle
+
+    /**
+     * A private member function called on collision.
+     * This function is used to detect collision of the ball with a wall or an obstacle, 
+     * to then reflect the balls directory and play a sound.
+     * @param collision the collision detected.
+     */
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Obstacle"))
@@ -142,7 +205,12 @@ public class BallController : MonoBehaviour
         }
     }
 
-    // Called when ball enters the hole
+    /**
+     * A private member function called on trigger.
+     * This function is used to detect whether the ball entered the hole with a "Hole" tagged trigger 
+     * or whether it went out of the tracks and triggered an "Out" tagged trigger.
+     * @param other the trigger collider detected.
+     */
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Hole"))
@@ -162,7 +230,10 @@ public class BallController : MonoBehaviour
     }
 
 
-    //A function to be called by the PLAY AGAIN button
+    /**
+     * A public member function that restarts the level.
+     * This function is used to reset strokes, turn off the HoleUI (final menu) start the ball restart coroutine.
+     */
     public void callRestartBall()
     {
         GameManager.Instance.setHoleUIActive(false);
@@ -170,7 +241,10 @@ public class BallController : MonoBehaviour
         StartCoroutine(restartBall());
     }
 
-    //Freezing the ball for 1 second after it gets restarted and moved to its starting position
+    /**
+     * A private coroutine for restarting the ball.
+     * It freezes the ball for one second after it gets restarted to its original position.
+     */
     IEnumerator restartBall()
     {
         transform.position = ballStartingPos;

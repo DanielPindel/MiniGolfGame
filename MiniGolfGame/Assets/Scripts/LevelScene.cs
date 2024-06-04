@@ -36,6 +36,9 @@ public class LevelScene : MonoBehaviour
         scene = GameObject.FindGameObjectWithTag("Scene");
     }
 
+    /**
+    * A member function called at the start of the scene.
+    */
     void Start()
     {
         if (freeLookCamera is not null)
@@ -45,6 +48,9 @@ public class LevelScene : MonoBehaviour
         }
     }
 
+    /**
+    * A member function causing an update every frame.
+    */
     void Update()
     {
         switch (levelState)
@@ -110,8 +116,11 @@ public class LevelScene : MonoBehaviour
         GameManager.Instance.setGamePause(false);
     }
 
-    
 
+    /**
+    * A public member function that sets the scoreboard.
+    * It opens the scoreboard and sets the visible player scores accordingly to those saved by the Game Manager.
+    */
     public void setScoreboard()
     {
         GameManager.Instance.scoreboard.SetActive(true);
@@ -121,6 +130,9 @@ public class LevelScene : MonoBehaviour
         scoresText.text = $"{arr[0]}   {arr[1]}   {arr[2]}   {arr[3]}   {arr[4]}   {arr[5]}   {arr[6]}   {arr[7]}   {arr[8]}   {arr[9]}";
     }
 
+    /**
+    * A public member function that toggles the visibility of the scoreboard.
+    */
     public void toggleScoreboard()
     {
         if (GameManager.Instance.scoreboard.activeInHierarchy)
