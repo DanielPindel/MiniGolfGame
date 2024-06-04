@@ -14,6 +14,8 @@ public class BallController : MonoBehaviour
     public float maxForce;
     //public float maxDragDistance = 1f;
     public float minVelocity;
+    public float magnetStrength = 2f;
+    public float spinSpeed = 360f;
 
     /**
     * A public Particle System variable for referencing confetti particles.
@@ -45,9 +47,7 @@ public class BallController : MonoBehaviour
     */
     public AudioClip[] confettiSoundClips;
 
-    /**
-    * A private Vector3 variable for storing starting position of the mouse cursor drag.
-    */
+    public Transform hole;
     private Vector3 dragStartPos;
 
     /**
@@ -66,14 +66,16 @@ public class BallController : MonoBehaviour
     private Vector3 ballStartingPos;
 
     /**
-    * A private bool variable checking whether the mouse input for the ball is set to be active.
+    * A public bool variable checking whether the mouse input for the ball is set to be active.
     */
-    private bool isInputActive;
+    public bool isInputActive;
 
     /**
     * A private bool variable checking whether the mouse hold was started.
     */
     private bool clickHoldStarted;
+    private bool isMagnetActive = false;
+    private bool isSpinningArrowActive = false;
 
 
     private void Awake()
@@ -115,6 +117,17 @@ public class BallController : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+
+        if(isMagnetActive)
+        {
+            ApplyMagnetForce();
+        }
+
+        if(isSpinningArrowActive)
+        {
+            RotateLine();
+        }
+
         if (rb.velocity.magnitude == 0)
         {
             if (Input.GetMouseButtonDown(0))
@@ -239,6 +252,7 @@ public class BallController : MonoBehaviour
     {
         GameManager.Instance.setHoleUIActive(false);
         GameManager.Instance.resetStrokes();
+        GameManager.Instance.ResetCardEffects();
         StartCoroutine(restartBall());
     }
 
@@ -258,11 +272,56 @@ public class BallController : MonoBehaviour
 
     public void RaiseForceMultiplier()
     {
-        forceMultiplier = boostedForceMultiplier;
+        if(forceMultiplier < 0)
+        {
+            forceMultiplier = -boostedForceMultiplier;
+        }
+        else
+        {
+            forceMultiplier = boostedForceMultiplier;
+        }
     }
 
     public void InverseForce()
     {
         forceMultiplier *= -1;
+    }
+
+    public void ApplyMagnetForce()
+    {
+        if(hole == null)
+        {
+            return;
+        }
+
+        Vector3 directionToHole = (hole.position - transform.position).normalized;
+        rb.AddForce(directionToHole * magnetStrength);
+    }
+
+    private void RotateLine()
+    {
+        Vector3 pivotPoint = lineRenderer.GetPosition(0);
+        float angle = spinSpeed * Time.deltaTime;
+        Vector3 direction = lineRenderer.GetPosition(1) - pivotPoint;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+        Vector3 newEndPos = rotation * direction + pivotPoint;
+        lineRenderer.SetPosition(1, newEndPos);
+    }
+
+    public void ActivateSpinningArrow(bool activate)
+    {
+        isSpinningArrowActive = activate;
+    }
+
+    public void ActivateMagnet()
+    {
+        isMagnetActive = true;
+        StartCoroutine(DeactivateMagnet(5f));
+    }
+
+    private IEnumerator DeactivateMagnet(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isMagnetActive = false;
     }
 }

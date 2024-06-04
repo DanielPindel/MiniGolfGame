@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
     */
     public static bool gameIsPaused = false;
 
-    // Temporary, for testing
     public bool showCards = false;
 
     /**
@@ -224,6 +223,7 @@ public class GameManager : MonoBehaviour
     {
         if(showCards)
         {
+            showCards = false;
             ShowCards();
         }
         if (startNextScene)
@@ -257,6 +257,8 @@ public class GameManager : MonoBehaviour
         scoreboard.SetActive(false);
         cards = GameObject.FindGameObjectWithTag("Cards");
         resetStrokes();
+        ResetCardEffects();
+        cards.GetComponent<CardsController>().ResetUsedCards();
         if (!bgMusic.isPlaying)
         {
             if (!wasMusicToggledOff)
@@ -340,6 +342,10 @@ public class GameManager : MonoBehaviour
     {
         playerStrokesArray[(int)levelNumber - 1]++;
         strokesText.SetText(playerStrokesArray[(int)levelNumber - 1].ToString());
+        if (playerStrokesArray[(int)levelNumber - 1] % 3 == 0) 
+        {
+            showCards = true;
+        }
     }
 
     /**
@@ -488,6 +494,11 @@ public class GameManager : MonoBehaviour
         ball.GetComponent<BallController>().InverseForce();
     }
 
+    public void MagnetForce()
+    {
+        ball.GetComponent<BallController>().ActivateMagnet();
+    }
+
     public void EnvironmentFog(bool active)
     {
         GameObject fog = GameObject.Find("Fog");
@@ -499,9 +510,11 @@ public class GameManager : MonoBehaviour
         RenderSettings.fog = active;
     }
 
-    /**
-    * A public member function that stops background music.
-    */
+    public void SpinArrow()
+    {
+        ball.GetComponent<BallController>().ActivateSpinningArrow(true);
+    }
+
     public void stopBGMusic()
     {
         bgMusic.Stop();
@@ -562,10 +575,38 @@ public class GameManager : MonoBehaviour
         return bgMusic.volume;
     }
 
-
-    public void activateFog()
+    public void FreezeInputs(bool active)
     {
-        EnvironmentFog(true);
+        ball.GetComponent<BallController>().isInputActive = active;
+    }
+
+    public void ResetCardEffects()
+    {
+        // HideArrow
+        LineRenderer lineRenderer = ball.GetComponent<LineRenderer>();
+        Color startColor = lineRenderer.startColor;
+        Color endColor = lineRenderer.endColor;
+        startColor.a = 1;
+        endColor.a = 1;
+        lineRenderer.startColor = startColor;
+        lineRenderer.endColor = endColor;
+
+        // BallPower
+        ball.GetComponent<BallController>().forceMultiplier = 20f;
+
+        // InverseControls
+        if(ball.GetComponent<BallController>().forceMultiplier < 0)
+        {
+            ball.GetComponent<BallController>().InverseForce();
+        }
+
+        // Fog
+        EnvironmentFog(false);
+
+        //SpinningArrow
+        //ball.GetComponent<BallController>().ActivateSpinningArrow(false);
+
+        cards.GetComponent<CardsController>().ResetUsedCards();
     }
 
 }
