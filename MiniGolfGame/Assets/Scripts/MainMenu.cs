@@ -28,6 +28,6 @@ public class MainMenu : MonoBehaviour
 
     public void Exit()
     {
-       
+        UnityEngine.Application.Quit();
     }
 }
