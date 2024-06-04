@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 /**
  *  A ball controller class. It controls the ball behavior and everything related to it such as ball sounds.
@@ -220,6 +220,7 @@ public class BallController : MonoBehaviour
             GameManager.Instance.setHoleUIActive(true);
             isInputActive = false;
             confettiParticles.Play();
+            GameManager.Instance.scoreboard.SetActive(true);
         }
         // If ball goes outside the tracks
         if (other.CompareTag("Out"))
@@ -253,6 +254,7 @@ public class BallController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
         isInputActive = true;
     }
+
 
     public void RaiseForceMultiplier()
     {
