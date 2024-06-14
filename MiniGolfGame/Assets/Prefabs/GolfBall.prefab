@@ -268,6 +268,8 @@ MonoBehaviour:
   boostedForceMultiplier: 3
   maxForce: 5
   minVelocity: 0.1
+  magnetStrength: 5
+  spinSpeed: 360
   confettiParticles: {fileID: 0}
   wallHitSoundClips:
   - {fileID: 8300000, guid: 348d34bf1b2d306418dfa3fcd4e5552d, type: 3}
@@ -290,3 +292,5 @@ MonoBehaviour:
   confettiSoundClips:
   - {fileID: 8300000, guid: 9bb855f259e061f49928d08718d84c12, type: 3}
   - {fileID: 8300000, guid: 2fced51a63e51934191b77f671ce387f, type: 3}
+  hole: {fileID: 0}
+  isInputActive: 0

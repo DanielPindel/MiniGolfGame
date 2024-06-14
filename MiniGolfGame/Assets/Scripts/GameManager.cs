@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     */
     GameObject cards;
 
+    GameObject scoresObject;
 
 
     bool startNextScene;
@@ -246,6 +247,7 @@ public class GameManager : MonoBehaviour
         holeUITitle = GameObject.Find("HoleUITitle").GetComponent<TextMeshProUGUI>();
         levelNumberText = GameObject.Find("LevelNumberText").GetComponent<TextMeshProUGUI>();
         scoreboard = GameObject.Find("Scoreboard");
+        scoresObject = GameObject.Find("Scores");
         musicButton = GameObject.Find("SoundButton");
         musicButton.GetComponent<UnityEngine.UI.Image>().sprite = musicOnIcon;
         levelNumber = GetCurrentLevelNumber();
@@ -346,6 +348,7 @@ public class GameManager : MonoBehaviour
         {
             showCards = true;
         }
+        setScoreboard();
     }
 
     /**
@@ -607,6 +610,13 @@ public class GameManager : MonoBehaviour
         //ball.GetComponent<BallController>().ActivateSpinningArrow(false);
 
         cards.GetComponent<CardsController>().ResetUsedCards();
+    }
+
+    public void setScoreboard()
+    {
+        int[] arr = playerStrokesArray;
+        Text scoresText = scoresObject.GetComponent<Text>();
+        scoresText.text = $"{arr[0]}   {arr[1]}   {arr[2]}   {arr[3]}   {arr[4]}   {arr[5]}   {arr[6]}   {arr[7]}   {arr[8]}   {arr[9]}";
     }
 
 }
