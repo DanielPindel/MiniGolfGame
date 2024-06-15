@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public bool showCards = false;
+    public bool blockCards;
 
     /**
     * A private Game Object variable for referencing the ball.
@@ -145,6 +146,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         bgMusic = this.GetComponent<AudioSource>();
+        blockCards = false;
     }
 
 
@@ -222,7 +224,7 @@ public class GameManager : MonoBehaviour
 
     private void LevelLoop()
     {
-        if(showCards)
+        if(showCards && blockCards)
         {
             showCards = false;
             ShowCards();
@@ -344,7 +346,7 @@ public class GameManager : MonoBehaviour
     {
         playerStrokesArray[(int)levelNumber - 1]++;
         strokesText.SetText(playerStrokesArray[(int)levelNumber - 1].ToString());
-        if (playerStrokesArray[(int)levelNumber - 1] % 3 == 0) 
+        if (playerStrokesArray[(int)levelNumber - 1] % 5 == 0 && !blockCards) 
         {
             showCards = true;
         }
@@ -612,11 +614,19 @@ public class GameManager : MonoBehaviour
         cards.GetComponent<CardsController>().ResetUsedCards();
     }
 
+    public void toggleCards()
+    {
+        blockCards = !blockCards;
+        Debug.Log("Setting blockCards to " + blockCards);
+    }
+
     public void setScoreboard()
     {
         int[] arr = playerStrokesArray;
         Text scoresText = scoresObject.GetComponent<Text>();
         scoresText.text = $"{arr[0]}   {arr[1]}   {arr[2]}   {arr[3]}   {arr[4]}   {arr[5]}   {arr[6]}   {arr[7]}   {arr[8]}   {arr[9]}";
     }
+
+    
 
 }

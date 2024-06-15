@@ -47,4 +47,5 @@ public class BlockMoveScript : MonoBehaviour
         transform.localPosition += moveBy * direction;
     }
 
+
 }
