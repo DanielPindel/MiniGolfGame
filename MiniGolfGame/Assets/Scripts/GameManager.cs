@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public bool showCards = false;
-    public bool blockCards;
+    public bool blockCards = false;
 
     /**
     * A private Game Object variable for referencing the ball.
@@ -146,7 +146,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         bgMusic = this.GetComponent<AudioSource>();
-        blockCards = false;
     }
 
 
@@ -224,7 +223,7 @@ public class GameManager : MonoBehaviour
 
     private void LevelLoop()
     {
-        if(showCards && blockCards)
+        if(showCards && !blockCards)
         {
             showCards = false;
             ShowCards();
@@ -304,6 +303,9 @@ public class GameManager : MonoBehaviour
             holeUITitle.SetText("HOLE IN " + strokesText.text + "!");
             strokesText.enabled = false;
             compareWithBestScore();
+            showCards = false;
+            HideCards();
+            setScoreboard();
         }
     }
 
@@ -350,7 +352,7 @@ public class GameManager : MonoBehaviour
         {
             showCards = true;
         }
-        setScoreboard();
+        //setScoreboard();
     }
 
     /**
@@ -478,6 +480,11 @@ public class GameManager : MonoBehaviour
         cards.GetComponent<CardsController>().ShowCards();
     }
 
+    public void HideCards()
+    {
+        cards.GetComponent<CardsController>().HideCards();
+    }
+
     public void HideArrow()
     {
         LineRenderer lineRenderer = ball.GetComponent<LineRenderer>();
@@ -513,6 +520,7 @@ public class GameManager : MonoBehaviour
         var urp = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
         urp.supportsCameraDepthTexture = active;
         RenderSettings.fog = active;
+
     }
 
     public void SpinArrow()
@@ -548,6 +556,10 @@ public class GameManager : MonoBehaviour
     */
     public void toggleBGMusic()
     {
+        if (gameIsPaused)
+        {
+            return;
+        }
         if(bgMusic.isPlaying)
         {
             bgMusic.Pause();
@@ -617,7 +629,19 @@ public class GameManager : MonoBehaviour
     public void toggleCards()
     {
         blockCards = !blockCards;
-        Debug.Log("Setting blockCards to " + blockCards);
+        if(blockCards)
+        {
+            Debug.Log("Blocking cards");
+        }
+        else
+        {
+            Debug.Log("Unblocking cards");
+        }
+    }
+
+    public bool cardsAreBlocked()
+    {
+        return blockCards;
     }
 
     public void setScoreboard()

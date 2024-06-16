@@ -30,16 +30,14 @@ public class MainMenu : MonoBehaviour
 
     public void setCardsToggleValue()
     {
-        Toggle toggle = GameObject.Find("CardsToggle").GetComponent<Toggle>();
-        toggle.isOn = !GameManager.Instance.blockCards;
-        Debug.Log("Setting toggle value to " + toggle.isOn);
+        
     }
 
     public void changeCardsToggle()
     {
-        Toggle toggle = GameObject.Find("CardsToggle").GetComponent<Toggle>();
         GameManager.Instance.toggleCards();
     }
+
 
     /**
      * A public member function that exits the program.

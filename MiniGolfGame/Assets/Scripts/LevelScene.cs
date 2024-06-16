@@ -135,6 +135,11 @@ public class LevelScene : MonoBehaviour
     */
     public void toggleScoreboard()
     {
+        if (GameManager.Instance.isGamePaused())
+        {
+            return;
+        }
+
         if (GameManager.Instance.scoreboard.activeInHierarchy)
         {
             GameManager.Instance.scoreboard.SetActive(false);
@@ -142,7 +147,7 @@ public class LevelScene : MonoBehaviour
         else
         {
             GameManager.Instance.scoreboard.SetActive(true);
-            setScoreboard();
+            //setScoreboard();
         }
     }
 }
