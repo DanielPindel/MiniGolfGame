@@ -374,6 +374,7 @@ public class GameManager : MonoBehaviour
         playerStrokesArray[(int)levelNumber - 1] = 0;
         strokesText.SetText("0");
         strokesText.enabled = true;
+        scoreboard.SetActive(false);
     }
 
     /**

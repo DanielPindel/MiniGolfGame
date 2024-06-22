@@ -204,6 +204,8 @@ public class BallController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Obstacle"))
         {
+            lineRenderer.enabled = false;
+
             Vector3 normal = collision.contacts[0].normal;
             Vector3 vel = rb.velocity;
             if (collision.collider.CompareTag("Wall"))
