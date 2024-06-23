@@ -111,7 +111,6 @@ public class GameManager : MonoBehaviour
 
     GameObject scoresObject;
 
-
     bool startNextScene;
     public int levelNumber = 1;
     string nextLevel;
