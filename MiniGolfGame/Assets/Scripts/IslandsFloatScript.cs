@@ -31,8 +31,17 @@ public class IslandsFloatScript : MonoBehaviour
     {
         Vector3 localPos = transform.localPosition;
 
+        float distanceToStart = Vector3.Distance(localPos, startPos);
+        float distanceToEnd = Vector3.Distance(localPos, endPos);
+
+        float totalDistance = Vector3.Distance(startPos, endPos);
+        float normalizedDistance = Mathf.Min(distanceToStart, distanceToEnd) / totalDistance;
+
+        float adjustedSpeed = moveBy * Mathf.Sin(normalizedDistance * Mathf.PI);
+        adjustedSpeed = Mathf.Max(adjustedSpeed, moveBy * 0.1f);
+
         // If it's close to the start or the end AND direction wasn't just changed
-        if ((Vector3.Distance(localPos, endPos) < moveBy * 2 || Vector3.Distance(localPos, startPos) < moveBy * 2) & !changedDir)
+        if ((distanceToEnd < moveBy * 2 || distanceToStart < moveBy * 2) & !changedDir)
         {
             // If it's not a start of the level
             if (!isStart)
@@ -50,6 +59,6 @@ public class IslandsFloatScript : MonoBehaviour
             if (isStart) { isStart = false; }
         }
 
-        transform.localPosition += moveBy * new Vector3(0, direction, 0);
+        transform.localPosition += adjustedSpeed * new Vector3(0, direction, 0);
     }
 }
