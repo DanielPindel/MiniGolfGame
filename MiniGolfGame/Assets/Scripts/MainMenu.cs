@@ -28,10 +28,6 @@ public class MainMenu : MonoBehaviour
         slider.value = GameManager.Instance.getBGMusicVolume();
     }
 
-    public void setCardsToggleValue()
-    {
-        
-    }
 
     public void changeCardsToggle()
     {

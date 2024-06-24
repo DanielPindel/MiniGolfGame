@@ -12,7 +12,6 @@ public class BallController : MonoBehaviour
     public float forceMultiplier;
     public float boostedForceMultiplier;
     public float maxForce;
-    //public float maxDragDistance = 1f;
     public float minVelocity;
     public float magnetStrength = 2f;
     public float spinSpeed = 360f;

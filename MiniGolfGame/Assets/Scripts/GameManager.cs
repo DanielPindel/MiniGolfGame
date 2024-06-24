@@ -213,12 +213,10 @@ public class GameManager : MonoBehaviour
         return (GameStates)Enum.Parse(typeof(GameStates), scene);
     }
 
-
     private void StartMainMenu()
     {
 
     }
-
 
     private void LevelLoop()
     {
