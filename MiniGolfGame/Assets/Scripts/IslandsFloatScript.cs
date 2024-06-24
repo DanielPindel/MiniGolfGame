@@ -6,7 +6,6 @@ using UnityEngine;
 public class IslandsFloatScript : MonoBehaviour
 {
     public float moveBy = 0.005f;
-    //public Vector3 direction = Vector3.right;
     public Vector3 endPos;
     Vector3 startPos;
     int direction = 1;
