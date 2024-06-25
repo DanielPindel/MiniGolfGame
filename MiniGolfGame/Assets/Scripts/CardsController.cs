@@ -79,8 +79,6 @@ public class CardsController : MonoBehaviour
     */
     public void ShowCards()
     {
-        if(GameManager.Instance.cardsAreBlocked()) { return; }
-
         SelectRandomCards();
 
         if(selectedCards.Count == 0)

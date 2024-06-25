@@ -5,7 +5,9 @@ using UnityEngine.Device;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+/**
+ *  A class controlling main menu actions.
+ */
 public class MainMenu : MonoBehaviour
 {
 
@@ -27,13 +29,6 @@ public class MainMenu : MonoBehaviour
         Slider slider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
         slider.value = GameManager.Instance.getBGMusicVolume();
     }
-
-
-    public void changeCardsToggle()
-    {
-        GameManager.Instance.toggleCards();
-    }
-
 
     /**
      * A public member function that exits the program.

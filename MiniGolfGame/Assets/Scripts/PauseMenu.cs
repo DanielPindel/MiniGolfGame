@@ -4,6 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+/**
+ *  A class controlling pause menu actions.
+ */
 public class PauseMenu : MonoBehaviour
 {
     /**
@@ -79,11 +83,6 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    /*public void LoadSettings()
-    {
-        pauseMenuUI.SetActive(false);
-
-    }*/
 
     /**
     * A public member function for exiting the program.

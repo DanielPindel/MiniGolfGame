@@ -62,7 +62,6 @@ MonoBehaviour:
     type: 3}
   showCards: 0
   blockCards: 0
-  cursorIcon: {fileID: 21300000, guid: 9df11a6245b9d1243876c3743b8e3359, type: 3}
   levelNumber: 1
   state: 0
 --- !u!82 &2515554730636658825

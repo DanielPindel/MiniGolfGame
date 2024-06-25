@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- *  A cards controller class. It controls the power-up and hindrances cards in the game.
+ *  A class controlling animation of windmill obstacles.
  */
 public class WindmillScript : MonoBehaviour
 {
-
+    /**
+    * A private rigid body object referencing rigid body of the windmill
+    */
     Rigidbody rb;
     public Vector3 m_EulerAngleVelocity;
 

@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public bool showCards = false;
-    public bool blockCards = false;
 
     /**
     * A private Game Object variable for referencing the ball.
@@ -109,12 +108,29 @@ public class GameManager : MonoBehaviour
     */
     GameObject cards;
 
+    /**
+    * A private Game Object for referencing the scores
+    */
     GameObject scoresObject;
 
+    /**
+    * A private bool for starting next scene
+    */
     bool startNextScene;
+
+    /**
+    * A public integer storing the number of the current level
+    */
     public int levelNumber = 1;
+
+    /**
+    * A private string storing the number of the next level
+    */
     string nextLevel;
 
+    /**
+     * A public enum with game states, which are scenes in the Unity environment
+    */
     public enum GameStates
     {
         MainMenu,
@@ -129,9 +145,15 @@ public class GameManager : MonoBehaviour
         Level9,
         Level10
     }
+
+    /**
+    * A public GameState state that is set as Main Menu state at the start
+    */
     public GameStates state = GameStates.MainMenu;
 
-
+    /**
+    * A method called when the script instance is being loaded
+    */
     private void Awake()
     {
         if (Instance == null)
@@ -147,7 +169,7 @@ public class GameManager : MonoBehaviour
         bgMusic = this.GetComponent<AudioSource>();
     }
 
-
+    
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
@@ -203,24 +225,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    /**
+    * A public member method converting scene name from the GameStates enum to string
+    * @param scene name to be converted to string
+    * @return scene name as string 
+    */
     public string SceneNameToString(GameStates scene)
     {
         return scene.ToString();
     }
+
+    /**
+    * A public member method converting scene name from string to the GameStates enum 
+    * @param scene name as string to be converted to GameStates enum
+    * @return scene name as GameStates enum
+    */
     public GameStates SceneNameToEnum(string scene)
     {
         return (GameStates)Enum.Parse(typeof(GameStates), scene);
     }
 
+    /**
+    * A private member method starting main menu
+    */
     private void StartMainMenu()
     {
 
     }
 
+    /**
+    * A private member method looping over the level
+    */
     private void LevelLoop()
     {
-        if(showCards && !blockCards)
+        if(showCards)
         {
             showCards = false;
             ShowCards();
@@ -345,7 +383,7 @@ public class GameManager : MonoBehaviour
     {
         playerStrokesArray[(int)levelNumber - 1]++;
         strokesText.SetText(playerStrokesArray[(int)levelNumber - 1].ToString());
-        if (playerStrokesArray[(int)levelNumber - 1] % 5 == 0 && !blockCards) 
+        if (playerStrokesArray[(int)levelNumber - 1] % 5 == 0) 
         {
             showCards = true;
         }
@@ -473,19 +511,25 @@ public class GameManager : MonoBehaviour
         playSFXClip(startLevelSFXClip, transform, 1f);
     }
 
+    /**
+    * A public member function for showing the cards in the UI
+    */
     public void ShowCards()
     {
-        if (!blockCards)
-        {
-            cards.GetComponent<CardsController>().ShowCards();
-        }
+        cards.GetComponent<CardsController>().ShowCards();
     }
 
+    /**
+    * A public member function for hiding the cards in the UI
+    */
     public void HideCards()
     {
         cards.GetComponent<CardsController>().HideCards();
     }
 
+    /**
+    * A public member function for hiding the arrow for Hide Arrow effect
+    */
     public void HideArrow()
     {
         LineRenderer lineRenderer = ball.GetComponent<LineRenderer>();
@@ -497,21 +541,33 @@ public class GameManager : MonoBehaviour
         lineRenderer.endColor = endColor;
     }
 
+    /**
+    * A public member function for activating the Boost effect
+    */
     public void BoostBallPower()
     {
         ball.GetComponent<BallController>().RaiseForceMultiplier();
     }
 
+    /**
+    * A public member function for activating the Inverse Controls effect
+    */
     public void InverseControls()
     {
         ball.GetComponent<BallController>().InverseForce();
     }
 
+    /**
+    * A public member function for activating the Magnet effect
+    */
     public void MagnetForce()
     {
         ball.GetComponent<BallController>().ActivateMagnet();
     }
 
+    /**
+    * A public member function for activating the Fog effect
+    */
     public void EnvironmentFog(bool active)
     {
         GameObject fog = GameObject.Find("Fog");
@@ -632,26 +688,8 @@ public class GameManager : MonoBehaviour
     }
 
     /**
-    * A public member function for toggling the cards
-    */
-    public void toggleCards()
-    {
-        blockCards = !blockCards;
-        if(blockCards)
-        {
-            Debug.Log("Blocking cards");
-        }
-        else
-        {
-            Debug.Log("Unblocking cards");
-        }
-    }
-
-    public bool cardsAreBlocked()
-    {
-        return blockCards;
-    }
-
+     * A public member method that sets the scoreboard scores in the UI
+     */
     public void setScoreboard()
     {
         int[] arr = playerStrokesArray;

@@ -66,7 +66,14 @@ public class BallController : MonoBehaviour
     */
     public AudioClip[] confettiSoundClips;
 
+    /**
+     * A public Transform object representing the hole position.
+     */
     public Transform hole;
+
+    /**
+     * A private Vector3 representing position of the start of the mouse drag.
+     */
     private Vector3 dragStartPos;
 
     /**
