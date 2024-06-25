@@ -5,24 +5,74 @@ using UnityEngine;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 
+/**
+ *  A class controlling help animation on the first level of the game
+ */
 public class CursorDrag : MonoBehaviour
 {
+    /**
+    * A public Texture object for referencing cursor texture for the animation
+    */
     public Texture cursorTexture;
+
+    /**
+    * A public Texture object for referencing cursor click texture for the animation
+    */
     public Texture cursorClickTexture;
 
+    /**
+    * A public float to set the drag amount of the animation
+    */
     public float drag;
+
+    /**
+    * A public float to decide on the length of the animation
+    */
     public float counter;
+
+    /**
+    * A public float for the max distance for the cursor to move during the animation
+    */
     public float maxDistance;
+
+    /**
+    * A public float for the fade distance for the cursor to be moving during the fade animation
+    */
     public float fadeDistance;
+
+    /**
+    * A public float for the fade amount for the cursor to be fading during the animation
+    */
     public float fade;
+
+    /**
+    * A public float for the wait time of each section of the animation
+    */
     public float waitTime;
+
+    /**
+    * A public RawImage object for referencing the cursor icon
+    */
     public RawImage icon;
+
+    /**
+    * A public Game Object for refencing the object storing the animation components in the scene
+    */
     public GameObject helpAnimation;
+
+    /**
+    * A private bool variable for freezing the animation (stopping it between animation sections)
+    */
     private bool freeze = false;
-    
+
+    /**
+    * A private Vector3 object for storing starting position of the cursor in the animation
+    */
     Vector3 startPos = new Vector3();
 
-    // Start is called before the first frame update
+    /**
+    * A member function called at the start of the scene.
+    */
     void Start()
     {
         startPos = transform.position;
@@ -38,7 +88,9 @@ public class CursorDrag : MonoBehaviour
         helpAnimation.SetActive(true);
     }
 
-    // Update is called once per frame
+    /**
+    * A member function called every frame.
+    */
     void FixedUpdate()
     {
 
@@ -90,7 +142,9 @@ public class CursorDrag : MonoBehaviour
         }
     }
 
-
+    /**
+     * A private coroutine for freezing the animation
+     */
     IEnumerator wait(float waitTime)
     {
         freeze = true;
@@ -98,6 +152,9 @@ public class CursorDrag : MonoBehaviour
         freeze = false;
     }
 
+    /**
+     * A private coroutine for freezing the animation and changing the texture to cursor click
+     */
     IEnumerator waitClick(float waitTime)
     {
         freeze = true;
@@ -106,6 +163,9 @@ public class CursorDrag : MonoBehaviour
         freeze = false;
     }
 
+    /**
+     * A private coroutine for freezing the animation and changing the texture to cursor
+     */
     IEnumerator unclickWait(float waitTime)
     {
         freeze = true;

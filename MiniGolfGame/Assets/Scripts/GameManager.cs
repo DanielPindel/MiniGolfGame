@@ -203,6 +203,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /**
+    * A member function called every frame.
+    */
     void Update()
     {
         switch (state)
