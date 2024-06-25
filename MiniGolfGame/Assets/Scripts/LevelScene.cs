@@ -14,7 +14,7 @@ public class LevelScene : MonoBehaviour
 
 #nullable enable
     public CinemachineFreeLook? freeLookCamera;
-    public float mouseSensitivity = 5f;
+    public float mouseSensitivity;
     public float smoothingFactor = 2f;
     public float decelerationFactor = 0.95f;
 
@@ -41,6 +41,8 @@ public class LevelScene : MonoBehaviour
     */
     void Start()
     {
+        mouseSensitivity = 30f;
+
         if (freeLookCamera is not null)
         {
             freeLookCamera.m_XAxis.m_InputAxisName = "";

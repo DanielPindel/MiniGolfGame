@@ -1,19 +1,39 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 /**
  *  A ball controller class. It controls the ball behavior and everything related to it such as ball sounds.
  */
 public class BallController : MonoBehaviour
 {
+    /**
+     * A public float for adjusting the ball force
+     */
     public float forceMultiplier;
+
+    /**
+     * A public float for the force multiplier after choosing the boost card in the game
+     */
     public float boostedForceMultiplier;
+
+    /**
+     * A public float for the maximal force for the ball
+     */
     public float maxForce;
+
+    /**
+     * A public float for the minimal velocity of the ball
+     */
     public float minVelocity;
+
+    /**
+     * A public float for the strength with which ball will be drawn to the hole after activating the Magnet card in the game
+     */
     public float magnetStrength = 2f;
+
+    /**
+     * A public float for the spin speed of the ball
+     */
     public float spinSpeed = 360f;
 
     /**
@@ -73,10 +93,15 @@ public class BallController : MonoBehaviour
     * A private bool variable checking whether the mouse hold was started.
     */
     private bool clickHoldStarted;
+
+    /**
+    * A private bool variable checking whether the magnet power-up was activated
+    */
     private bool isMagnetActive = false;
-    private bool isSpinningArrowActive = false;
 
-
+    /**
+    * A method called when the script instance is being loaded
+    */
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -101,7 +126,7 @@ public class BallController : MonoBehaviour
     }
 
     /**
-    * A member function causing an update every frame.
+    * A member function called every frame.
     */
     void Update()
     {
@@ -120,11 +145,6 @@ public class BallController : MonoBehaviour
         if(isMagnetActive)
         {
             ApplyMagnetForce();
-        }
-
-        if(isSpinningArrowActive)
-        {
-            RotateLine();
         }
 
         if (rb.velocity.magnitude == 0)
@@ -182,7 +202,10 @@ public class BallController : MonoBehaviour
         }
     }
 
-
+    /**
+     * A private member function for getting mouse position on XZ place.
+     * This function is used for getting mouse position on XZ place for mouse input in the game, it uses raycasting.
+     */
     private Vector3 GetMousePositionOnXZPlane()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -270,7 +293,10 @@ public class BallController : MonoBehaviour
         isInputActive = true;
     }
 
-
+    /**
+     * A public member function to raise the force multiplier.
+     * This function is used for applying boost to the ball force.
+     */
     public void RaiseForceMultiplier()
     {
         if(forceMultiplier < 0)
@@ -283,11 +309,19 @@ public class BallController : MonoBehaviour
         }
     }
 
+    /**
+     * A public member function to inverse the direction of the force.
+     * This function is used for hindrance card that reverses the direction of the force applied to the ball.
+     */
     public void InverseForce()
     {
         forceMultiplier *= -1;
     }
 
+    /**
+     * A public member function to apply force attracting ball to the hole.
+     * This function is used for magnet power-up card.
+     */
     public void ApplyMagnetForce()
     {
         if(hole == null)
@@ -299,27 +333,18 @@ public class BallController : MonoBehaviour
         rb.AddForce(directionToHole * magnetStrength);
     }
 
-    private void RotateLine()
-    {
-        Vector3 pivotPoint = lineRenderer.GetPosition(0);
-        float angle = spinSpeed * Time.deltaTime;
-        Vector3 direction = lineRenderer.GetPosition(1) - pivotPoint;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
-        Vector3 newEndPos = rotation * direction + pivotPoint;
-        lineRenderer.SetPosition(1, newEndPos);
-    }
-
-    public void ActivateSpinningArrow(bool activate)
-    {
-        isSpinningArrowActive = activate;
-    }
-
+    /**
+     * A public member function to activate magnet power-up
+     */
     public void ActivateMagnet()
     {
         isMagnetActive = true;
         StartCoroutine(DeactivateMagnet(5f));
     }
 
+    /**
+     * A private coroutine for applying the magnet power-up for a certain amount of time.
+     */
     private IEnumerator DeactivateMagnet(float delay)
     {
         yield return new WaitForSeconds(delay);

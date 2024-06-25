@@ -4,18 +4,50 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+/**
+ *  A cards controller class. It controls the power-up and hindrances cards in the game.
+ */
 public class CardsController : MonoBehaviour
 {
+    /**
+     * A private GameObject variable to reference a card.
+     */
     GameObject card1;
+
+    /**
+     * A private GameObject variable to reference a card.
+     */
     GameObject card2;
+
+    /**
+     * A private GameObject variable to reference a card.
+     */
     GameObject card3;
 
+    /**
+     * A public Sprite object to reference and store card icons.
+     */
     public Sprite[] cardIcons = new Sprite[5];
+
+    /**
+     * A public Sprite object to store texts from cards.
+     */
     public string[] cardTexts = new string[5];
 
+    /**
+     * A private list of integers to reference selected cards
+     */
     private List<int> selectedCards = new List<int>();
+
+    /**
+     * A public Sprite object to reference used cards
+     */
     private List<int> usedCards = new List<int>();
 
+    /**
+    * A method called when the script instance is being loaded
+    */
     private void Awake()
     {
         card1 = GameObject.Find("Card1");
@@ -23,7 +55,9 @@ public class CardsController : MonoBehaviour
         card3 = GameObject.Find("Card3");
     }
 
-    // Start is called before the first frame update
+    /**
+    * A member function called at the start of the scene.
+    */
     void Start()
     {
         gameObject.SetActive(false);
@@ -32,14 +66,21 @@ public class CardsController : MonoBehaviour
         card3.SetActive(false);
     }
 
-    // Update is called once per frame
+    /**
+    * A member function called every frame.
+    */
     void Update()
     {
 
     }
 
+    /**
+    * A public member function for showing power-up and hindrance cards in the game UI.
+    */
     public void ShowCards()
     {
+        if(GameManager.Instance.cardsAreBlocked()) { return; }
+
         SelectRandomCards();
 
         if(selectedCards.Count == 0)
@@ -56,6 +97,9 @@ public class CardsController : MonoBehaviour
         GameManager.Instance.FreezeInputs(false);
     }
 
+    /**
+    * A public member function for hiding power-up and hindrance cards in the game UI.
+    */
     public void HideCards()
     {
         gameObject.SetActive(false);
@@ -65,6 +109,9 @@ public class CardsController : MonoBehaviour
         GameManager.Instance.FreezeInputs(true);
     }
 
+    /**
+    * A public member function for activating the first card after it was chosen by the player.
+    */
     public void ActivateCard1()
     {
         ApplyCardEffect(selectedCards[0]);
@@ -73,6 +120,9 @@ public class CardsController : MonoBehaviour
         HideCards();
     }
 
+    /**
+    * A public member function for activating the second card after it was chosen by the player.
+    */
     public void ActivateCard2()
     {
         ApplyCardEffect(selectedCards[1]);
@@ -81,6 +131,9 @@ public class CardsController : MonoBehaviour
         HideCards();
     }
 
+    /**
+    * A public member function for activating the third card after it was chosen by the player.
+    */
     public void ActivateCard3()
     {
         ApplyCardEffect(selectedCards[2]);
@@ -89,6 +142,9 @@ public class CardsController : MonoBehaviour
         HideCards();
     }
 
+    /**
+    * A private member function for selecting random cards to be shown to the player
+    */
     private void SelectRandomCards()
     {
         selectedCards.Clear();
@@ -114,6 +170,9 @@ public class CardsController : MonoBehaviour
         }
     }
 
+    /**
+    * A private member function for updating the cards as they appear.
+    */
     private void UpdateCardUI()
     {
         if (selectedCards.Count > 0) UpdateCard(card1, selectedCards[0]);
@@ -121,6 +180,11 @@ public class CardsController : MonoBehaviour
         if (selectedCards.Count > 2) UpdateCard(card3, selectedCards[2]);
     }
 
+    /**
+    * A private member function for changing the images and text on the cards.
+    * @param card the GameObject object referencing a card
+    * @param index the index of the card
+    */
     private void UpdateCard(GameObject card, int index)
     {
         string cardNumber = card.name.Substring(card.name.Length - 1);
@@ -128,6 +192,10 @@ public class CardsController : MonoBehaviour
         card.transform.Find($"Card{cardNumber}Text").GetComponent<TextMeshProUGUI>().text = cardTexts[index];
     }
 
+    /**
+    * A private member function for applying the cards' effect in the game.
+    * @param index the index of the card
+    */
     private void ApplyCardEffect(int index)
     {
         switch (index)
@@ -147,44 +215,54 @@ public class CardsController : MonoBehaviour
             case 4:
                 MagnetBallCard();
                 break;
-            //case 5:
-            //    SpinningArrowCard();
-            //    break;
         }
     }
 
+    /**
+    * A private member function for resetting the cards that were used
+    */
     public void ResetUsedCards()
     {
         usedCards.Clear();
     }
 
+    /**
+    * A private member function for applying Invisible Arrow effect via Game Manager
+    */
     public void InvisibleArrowCard()
     {
         GameManager.Instance.HideArrow();
     }
 
+    /**
+    * A private member function for applying Power Shot effect via Game Manager
+    */
     public void PowerShotCard()
     {
         GameManager.Instance.BoostBallPower();
-    }    
+    }
 
+    /**
+    * A private member function for applying Inverse Controls effect via Game Manager
+    */
     public void InverseControlsCard()
     {
         GameManager.Instance.InverseControls();
     }
 
+    /**
+    * A private member function for applying Fog effect via Game Manager
+    */
     public void FogCard()
     {
         GameManager.Instance.EnvironmentFog(true);
     }
 
+    /**
+    * A private member function for applying Magnet effect via Game Manager
+    */
     public void MagnetBallCard()
     {
         GameManager.Instance.MagnetForce();
-    }
-
-    public void SpinningArrowCard()
-    {
-        GameManager.Instance.SpinArrow();
     }
 }

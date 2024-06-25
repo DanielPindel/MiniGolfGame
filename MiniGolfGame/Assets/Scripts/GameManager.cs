@@ -349,7 +349,7 @@ public class GameManager : MonoBehaviour
         {
             showCards = true;
         }
-        //setScoreboard();
+        setScoreboard();
     }
 
     /**
@@ -475,7 +475,10 @@ public class GameManager : MonoBehaviour
 
     public void ShowCards()
     {
-        cards.GetComponent<CardsController>().ShowCards();
+        if (!blockCards)
+        {
+            cards.GetComponent<CardsController>().ShowCards();
+        }
     }
 
     public void HideCards()
@@ -521,11 +524,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SpinArrow()
-    {
-        ball.GetComponent<BallController>().ActivateSpinningArrow(true);
-    }
-
+    /**
+   * A public member function that stops background music.
+   */
     public void stopBGMusic()
     {
         bgMusic.Stop();
@@ -590,11 +591,17 @@ public class GameManager : MonoBehaviour
         return bgMusic.volume;
     }
 
+    /**
+    * A public member function for blocking mouse inputs to the ball
+    */
     public void FreezeInputs(bool active)
     {
         ball.GetComponent<BallController>().isInputActive = active;
     }
 
+    /**
+    * A public member function for resetting the card effects
+    */
     public void ResetCardEffects()
     {
         // HideArrow
@@ -624,6 +631,9 @@ public class GameManager : MonoBehaviour
         cards.GetComponent<CardsController>().ResetUsedCards();
     }
 
+    /**
+    * A public member function for toggling the cards
+    */
     public void toggleCards()
     {
         blockCards = !blockCards;
