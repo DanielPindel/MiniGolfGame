@@ -11,19 +11,49 @@ using UnityEngine.UI;
 
 public class LevelScene : MonoBehaviour
 {
+    /**
+    * A private GameObject variable to reference the scene.
+    */
     GameObject scene;
 
 #nullable enable
+    /**
+    * CinemachineFreeLook variable to reference the free look camera.
+    */
     public CinemachineFreeLook? freeLookCamera;
+    /**
+    * Float variable to store the mouse sensitivity.
+    */
     public float mouseSensitivity;
+    /**
+    * Float variable to store the smoothing factor of the camera movement.
+    */
     public float smoothingFactor = 2f;
+    /**
+    * Float variable to store the deceleration factor of the camera movement.
+    */
     public float decelerationFactor = 0.95f;
 
+    /**
+    * Float variable for camera movement calculations.
+    */
     private float currentHorizontal;
+    /**
+    * Float variable for camera movement calculations.
+    */
     private float currentVertical;
+    /**
+    * Float variable for camera movement velocity calculations.
+    */
     private float horizontalVelocity;
+    /**
+    * Float variable for camera movement velocity calculations.
+    */
     private float verticalVelocity;
 
+    /**
+     * Enum to store the state of the level.
+     */
     public enum LevelStates
     {
         Default,
@@ -69,6 +99,9 @@ public class LevelScene : MonoBehaviour
         }
     }
 
+    /**
+    * Method responsible for camera movement.
+    */
     void CameraMovement()
     {
         if (freeLookCamera is not null)
@@ -104,17 +137,27 @@ public class LevelScene : MonoBehaviour
     }
 
 
-
+    /**
+     * Method for loading the next level.
+     */
     public void NextLevel()
     {
         GameManager.Instance.LoadNextLevel();
     }
 
+    /**
+     * Method for returning to the main menu.
+     */
     public void MainMenu()
     {
         GameManager.Instance.MainMenu();
     }
 
+    /**
+     * Method for opening a specific scene.
+     * 
+     * @param level The level to be opened.
+     */
     public void OpenScene(int level)
     {
         GameManager.Instance.OpenLevel(level);

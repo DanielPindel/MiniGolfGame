@@ -169,18 +169,28 @@ public class GameManager : MonoBehaviour
         bgMusic = this.GetComponent<AudioSource>();
     }
 
-    
+    /**
+     * Method called when the object becomes enabled and active
+     */
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
+    /**
+     * Method called when the object becomes disabled and inactive
+     */
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
-
+    /**
+     * Method called when a scene is loaded
+     * 
+     * @param scene the scene that is loaded
+     * @param mode the mode in which the scene is loaded
+     */
     private void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         switch (state)
@@ -314,12 +324,18 @@ public class GameManager : MonoBehaviour
     }
 
 
-
+    /**
+     * Method for loading the next level
+     */
     public void LoadNextLevel()
     {
         state = SceneNameToEnum(nextLevel);
         SceneManager.LoadScene(SceneNameToString(state));
     }
+
+    /**
+     * Method for returning to the main menu
+     */
     public void MainMenu()
     {
         pauseBGMusic();
