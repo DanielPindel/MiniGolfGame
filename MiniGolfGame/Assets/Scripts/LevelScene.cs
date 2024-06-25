@@ -72,8 +72,11 @@ public class LevelScene : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
             {
-                float targetHorizontal = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * 100f;
-                float targetVertical = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+                float mouseX = Input.GetAxis("Mouse X") / Screen.width * 100f;
+                float mouseY = Input.GetAxis("Mouse Y") / Screen.height;
+
+                float targetHorizontal = mouseX * mouseSensitivity;
+                float targetVertical = mouseY * mouseSensitivity;
 
                 currentHorizontal = Mathf.SmoothDamp(currentHorizontal, targetHorizontal, ref horizontalVelocity, smoothingFactor * Time.deltaTime * 10f);
                 currentVertical = Mathf.SmoothDamp(currentVertical, targetVertical, ref verticalVelocity, smoothingFactor * Time.deltaTime);
